@@ -5,73 +5,50 @@ import Model.Carta.*;
 import Utilità.Observable;
 import Utilità.Observer;
 
-<<<<<<< HEAD
-public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata{
-=======
-public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata, Observer{
->>>>>>> e3a2bf5 (update)
+public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata {
 
-	private List<Observer> Observers;
+	private final List<Observer> Observers;
 	private static MazzoUno mazzoUno;
 	private Carta cartaPescata;
-	
-	private MazzoUno() { 
-		Observers = new ArrayList<Observer>();	}
-	
+
+	private MazzoUno() {
+		Observers = new ArrayList<Observer>();
+	}
+
 	/**
 	 * Creazione mazzo in Singleton
-	 * @return
+	 * @return Il mazzo
 	 */
-	public static MazzoUno getMazzoUno() { 
+	public static MazzoUno getMazzoUno() {
 		if (mazzoUno == null) mazzoUno = new MazzoUno();
-		return mazzoUno; }
-			
-	@Override
-	public Carta pesca() {
-<<<<<<< HEAD
-		updateAll();
-		cartaPescata=pop();
-		return cartaPescata; 
-=======
-		cartaPescata=pop();
-		updateAll();
-		return cartaPescata;
->>>>>>> e3a2bf5 (update)
+		return mazzoUno;
 	}
-	
-	@Override
-	public Carta getCartaPescata() {return cartaPescata;}
-	
 
 	@Override
-	public void addObserver(Observer observer) { 
-		
-		this.Observers.add(observer);		
+	public Carta pesca() {
+		updateAll();
+		cartaPescata = pop();
+		return cartaPescata;
+	}
+
+	@Override
+	public Carta getCartaPescata() {
+		return cartaPescata;
+	}
+
+	@Override
+	public void addObserver(Observer observer) {
+		this.Observers.add(observer);
 	}
 
 	@Override
 	public void removeObserver(Observer observer) {
-
-		this.Observers.remove(observer);		
+		this.Observers.remove(observer);
 	}
 
 	@Override
-<<<<<<< HEAD
-	public void updateAll() { 
-		for (Observer o: Observers) {	 
-			o.update(this); }	}
-
-	}
-=======
 	public void updateAll() {
-		for (Observer o: Observers) {
-			o.update(this); }	}
-
-	@Override
-	public void update(Object o) {
-		if(o instanceof MazzoFactory<?> factory) {
-			factory.produciMazzo();
-		}
+		for (Observer o : Observers) o.update(this);
 	}
+
 }
->>>>>>> e3a2bf5 (update)
