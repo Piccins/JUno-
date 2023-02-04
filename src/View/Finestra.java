@@ -8,13 +8,12 @@ public class Finestra extends JFrame {
     private static Finestra finestra;
 
     private Finestra() {
+        setLayout(new BorderLayout());
         setName("JUno Serena");
-        // setUndecorated(true);
-        // setBackground(new Color(147, 146, 204));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(getToolkit().getScreenSize());
-        // setSize(new Dimension(500, 500));
-        add(Sfondo.getSfondo());
+        setMinimumSize(new Dimension(1200, 800));
+        add(Sfondo.getSfondo(), BorderLayout.CENTER);
     };
 
     public static Finestra getFinestra() {
