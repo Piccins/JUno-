@@ -5,7 +5,11 @@ import Model.Carta.*;
 import Utilità.Observable;
 import Utilità.Observer;
 
+<<<<<<< HEAD
 public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata{
+=======
+public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata, Observer{
+>>>>>>> e3a2bf5 (update)
 
 	private List<Observer> Observers;
 	private static MazzoUno mazzoUno;
@@ -24,9 +28,15 @@ public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, 
 			
 	@Override
 	public Carta pesca() {
+<<<<<<< HEAD
 		updateAll();
 		cartaPescata=pop();
 		return cartaPescata; 
+=======
+		cartaPescata=pop();
+		updateAll();
+		return cartaPescata;
+>>>>>>> e3a2bf5 (update)
 	}
 	
 	@Override
@@ -46,8 +56,22 @@ public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, 
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void updateAll() { 
 		for (Observer o: Observers) {	 
 			o.update(this); }	}
 
 	}
+=======
+	public void updateAll() {
+		for (Observer o: Observers) {
+			o.update(this); }	}
+
+	@Override
+	public void update(Object o) {
+		if(o instanceof MazzoFactory<?> factory) {
+			factory.produciMazzo();
+		}
+	}
+}
+>>>>>>> e3a2bf5 (update)

@@ -5,6 +5,7 @@ import Utilità.ObserverExample;
 public class MazzoTester {
 	
 	public static void main(String[]args ) {
+<<<<<<< HEAD
 		
 		ObserverExample obs = new ObserverExample();	
 		MazzoUno mazzo = MazzoUno.getMazzoUno();
@@ -17,4 +18,12 @@ public class MazzoTester {
 		
 	}
  
+=======
+		ObserverExample obs = new ObserverExample();
+		PilaScartiUno pila = PilaScartiUno.getPilaScartiUno();
+		pila.addObserver(obs);
+		pila.updateAll();
+	}
+
+>>>>>>> e3a2bf5 (update)
 }
