@@ -1,10 +1,5 @@
 package Model.Mazzo;
 
-<<<<<<< HEAD
-public class MescolatoreUno {
-
-}
-=======
 import Model.Carta.Carta;
 import Utilità.Observable;
 import Utilità.Observer;
@@ -19,7 +14,7 @@ public class MescolatoreUno implements Mescolatore<Carta>, Observable, Observer 
     private Mazzo<Carta> mazzo;
 
     // Lista degli Observer
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     /* Il mescolatore. */
     private static MescolatoreUno mescolatore;
@@ -89,4 +84,3 @@ public class MescolatoreUno implements Mescolatore<Carta>, Observable, Observer 
     }
 
 }
->>>>>>> e3a2bf5 (update)
