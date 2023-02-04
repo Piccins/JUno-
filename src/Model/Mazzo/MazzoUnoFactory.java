@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MazzoUnoFactory implements MazzoFactory<Carta>, Observable {
 
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     private static MazzoUnoFactory mazzoUnoFactory;
 
