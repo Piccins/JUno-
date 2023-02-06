@@ -1,5 +1,7 @@
 package View;
 
+import Controller.CambiaPannello;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -8,14 +10,19 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JPanel {
 
-    ButtonGroup gruppoRadio = new ButtonGroup();
+    private final ButtonGroup gruppoRadio = new ButtonGroup();
 
-    // Campo del testo
-    JTextField textField = new JTextField(20);
+    private JPanel cardPannello;
+
+    private final JTextField textField;
 
     private static Menu menu;
 
     private Menu() {
+        textField = new JTextField(20);
+    }
+
+    public void inizializza() {
         setLayout(new GridBagLayout());
         setOpaque(false);
         setPreferredSize(new Dimension(1000, 1000));
@@ -77,8 +84,6 @@ public class Menu extends JPanel {
                     radioTigre.setBorder(null);
                     radioTigre.setOpaque(false);
                 }
-
-                System.out.println(gruppoRadio.getSelection().getActionCommand());
             }
 
         }
@@ -90,6 +95,11 @@ public class Menu extends JPanel {
         gruppoRadio.add(radioCane);
         gruppoRadio.add(radioGallo);
         gruppoRadio.add(radioTigre);
+
+        // Bottone start.
+        JButton start = new JButton("Start");
+        start.setFont(new Font(Font.DIALOG, Font.ITALIC, 30));
+        start.addActionListener(new CambiaPannello(cardPannello, CardPannello.PARTITA));
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -169,11 +179,47 @@ public class Menu extends JPanel {
         gbc.weightx = 0;
         gbc.weighty = 0;
         add(radioTigre, gbc);
+
+        // Start
+        gbc.insets = new Insets(30, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(start, gbc);
     }
 
     public static Menu getMenu() {
         if(menu == null) menu = new Menu();
         return menu;
+    }
+
+    /**
+     * Imposta il card pannello.
+     * @param cardPannello Un JPanel
+     */
+    public void setCardPannello(JPanel cardPannello) {
+        this.cardPannello = cardPannello;
+    }
+
+    /**
+     * Restituisce il nickname inserito.
+     * @return Il nickname.
+     */
+    public String getNickname() {
+        return textField.getText();
+    }
+
+    /**
+     * Restituisce il comando azione dell'avatar
+     * selezionato.
+     * @return Una stringa.
+     */
+    public String getAvatarSelezionato() {
+        return gruppoRadio.getSelection().getActionCommand();
     }
 
 }

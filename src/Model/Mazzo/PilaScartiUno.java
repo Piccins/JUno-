@@ -26,8 +26,8 @@ public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Ob
 
 	@Override
 	public void removeObserver(Observer observer) {
-
-		this.Observers.remove(observer);		}
+		this.Observers.remove(observer);
+	}
 
 	@Override
 	public void updateAll() { for (Observer o: Observers) {	 o.update(this); }	}
@@ -35,7 +35,7 @@ public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Ob
 	@Override
 	public void scarta(Carta carta) {
 		push(carta);
-		updateAll();		
+		updateAll();
 	}
 
 }

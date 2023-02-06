@@ -1,3 +1,5 @@
+import View.Inizializzatore;
+
 /**
  * Classe Main del programma JUno.
  */
@@ -8,7 +10,7 @@ public class JUno {
      * @param args Gli argomenti passati nella riga di comando.
      */
     public static void main(String[] args) {
-
+        Inizializzatore.inizializza();
     }
 
 }

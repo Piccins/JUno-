@@ -17,5 +17,5 @@ public enum AzioneUno implements Azione {
 
 	@Override
 	public boolean isSaltaGiro() {return name().equals("SALTAGIRO");}
-	
+
 }
