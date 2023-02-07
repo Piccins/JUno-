@@ -35,6 +35,8 @@ public class ControlloreCartaValida {
         Azione cartaDaControllareAzione = cartaDaControllare.getAzione();
         Integer cartaDaControllareValore = cartaDaControllare.getValore();
 
+	// Manca il controllo relativo al colore attuale.
+	// Prima, incapsulare il gestore del colore attuale e poi inserire il controllo.
         boolean casoColore = cartaDaControllareColore != null &&
                 (cartaDaControllareColore.equals(cartaInCimaColore) || cartaDaControllareColore.isNero());
         boolean casoAzione = cartaDaControllareAzione != null && cartaDaControllareAzione.equals(cartaInCimaAzione);
