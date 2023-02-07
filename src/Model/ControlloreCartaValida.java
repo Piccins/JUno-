@@ -8,12 +8,17 @@ import Model.Mazzo.ColoreInGioco;
 public class ControlloreCartaValida {
 
     private static ControlloreCartaValida controlloreCartaValida;
+    private ColoreInGioco coloreinGioco;
 
     private ControlloreCartaValida() {}
 
     public static ControlloreCartaValida getControlloreCartaValida() {
         if(controlloreCartaValida == null) controlloreCartaValida = new ControlloreCartaValida();
         return controlloreCartaValida;
+    }
+
+    public void setColoreinGioco(ColoreInGioco coloreInGioco) {
+        this.coloreinGioco = coloreInGioco;
     }
 
     /**
@@ -38,7 +43,7 @@ public class ControlloreCartaValida {
 	// Manca il controllo relativo al colore attuale.
 	// Prima, incapsulare il gestore del colore attuale e poi inserire il controllo.
         boolean casoColore = cartaDaControllareColore != null &&
-                (cartaDaControllareColore.equals(cartaInCimaColore) || cartaDaControllareColore.isNero());
+                (cartaDaControllareColore.equals(cartaInCimaColore) || cartaDaControllareColore.isNero() || cartaDaControllareColore.equals(coloreinGioco.getColore()));
         boolean casoAzione = cartaDaControllareAzione != null && cartaDaControllareAzione.equals(cartaInCimaAzione);
         boolean casoValore = cartaDaControllareValore != null && cartaDaControllareValore.equals(cartaInCimaValore);
         return casoColore || casoAzione || casoValore;
