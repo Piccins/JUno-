@@ -2,8 +2,8 @@ package Model.Giocatori;
 
 import Model.Carta.Carta;
 import Model.FornitoreDelleCarteValide;
-import Utilità.Observable;
-import Utilità.Observer;
+import Utilita.Observable;
+import Utilita.Observer;
 
 
 import java.util.ArrayList;
@@ -28,20 +28,46 @@ public class Bot implements Observable, Giocatore {
         // questo giocatore (bot) decide quale carta fornire
         // e, se ha almeno una carta che può giocare, ne ritorna
         // una. Altrimenti ritorna null.
-
         FornitoreDelleCarteValide fornitoreDelleCarteValide = FornitoreDelleCarteValide.getFornitoreDelleCarteValide();
         List<Carta> carteValide = fornitoreDelleCarteValide.getCarteValide(carte);
         return carteValide.size() == 0 ?  null : carteValide.get(0);
     }
 
+    /**
+     * Aggiunge l'oggetto Carta specificato
+     * nella mano di questo giocatore.
+     * @param carta Un oggetto Carta.
+     */
     public void add(Carta carta){
         carte.add(carta);
         updateAll();
     }
 
+    /**
+     * Rimuove la carta specificata nella
+     * mano di questo giocatore.
+     * @param carta Un oggetto Carta.
+     */
     public void remove(Carta carta){
         carte.remove(carta);
         updateAll();
+    }
+
+    /**
+     * Restituisce le carte in mano di
+     * questo giocatore.
+     * @return Un oggetto List.
+     */
+    public List<Carta> getCarte() {
+        return carte;
+    }
+
+    /**
+     * Restituisce il nome di questo giocatore.
+     * @return Una stringa.
+     */
+    public String getNome() {
+        return nome;
     }
 
     @Override
@@ -57,5 +83,9 @@ public class Bot implements Observable, Giocatore {
     @Override
     public void updateAll() {
         for ( Observer o : observers ) o.update(this);
+    }
+
+    public String toString() {
+        return "Giocatore[" + nome + "]";
     }
 }

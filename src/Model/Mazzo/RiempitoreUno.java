@@ -3,8 +3,8 @@ package Model.Mazzo;
 import java.util.ArrayList;
 import java.util.List;
 import Model.Carta.Carta;
-import Utilità.Observable;
-import Utilità.Observer;
+import Utilita.Observable;
+import Utilita.Observer;
 
 public class RiempitoreUno implements Riempitore<Carta>, Observer, Observable {
 

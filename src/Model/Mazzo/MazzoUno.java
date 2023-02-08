@@ -2,8 +2,8 @@ package Model.Mazzo;
 
 import java.util.*;
 import Model.Carta.*;
-import Utilità.Observable;
-import Utilità.Observer;
+import Utilita.Observable;
+import Utilita.Observer;
 
 public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, FornitoreDellaCartaPescata {
 

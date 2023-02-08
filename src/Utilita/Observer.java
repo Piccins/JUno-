@@ -1,4 +1,4 @@
-package Utilità;
+package Utilita;
 
 public interface Observer {
 	

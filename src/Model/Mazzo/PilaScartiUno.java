@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import Model.Carta.Carta;
-import Utilità.Observable;
-import Utilità.Observer;
+import Utilita.Observable;
+import Utilita.Observer;
 
 public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Observable {
 	

@@ -2,8 +2,8 @@ package Model.Mazzo;
 
 import Model.Carta.Carta;
 import Model.Carta.Colore;
-import Utilità.Observable;
-import Utilità.Observer;
+import Utilita.Observable;
+import Utilita.Observer;
 
 import java.util.List;
 
