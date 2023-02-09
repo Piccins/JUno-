@@ -1,5 +1,6 @@
 package view;
 
+import controller.CambiaPannello;
 import controller.ControlloreNickname;
 
 import javax.swing.*;

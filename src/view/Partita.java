@@ -8,7 +8,7 @@ public class Partita extends JPanel {
     private JPanel pannelloSouth;
     private JPanel pannelloNorth;
     private JPanel pannelloWest;
-    private JPanel pannelloEast;
+    private JScrollPane pannelloEast;
     private JPanel pannelloCenter;
 
     private static Partita partita;
@@ -42,7 +42,7 @@ public class Partita extends JPanel {
         this.pannelloWest = pannelloWest;
     }
 
-    public void setPannelloEast(JPanel pannelloEast) {
+    public void setPannelloEast(JScrollPane pannelloEast) {
         this.pannelloEast = pannelloEast;
     }
 
