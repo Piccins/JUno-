@@ -1,4 +1,4 @@
-import View.Inizializzatore;
+import view.Inizializzatore;
 
 /**
  * Classe Main del programma JUno.
