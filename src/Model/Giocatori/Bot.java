@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Bot implements Observable, Giocatore {
 
+    private boolean cartaAggiunta = false;
+
     private final List<Carta> carte;
 
     private final List<Observer> observers;
@@ -39,6 +41,7 @@ public class Bot implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void add(Carta carta){
+        cartaAggiunta = true;
         carte.add(carta);
         updateAll();
     }
@@ -49,8 +52,13 @@ public class Bot implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void remove(Carta carta){
+        cartaAggiunta = false;
         carte.remove(carta);
         updateAll();
+    }
+
+    public boolean isCartaAggiunta() {
+        return cartaAggiunta;
     }
 
     /**

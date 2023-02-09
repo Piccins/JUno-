@@ -9,6 +9,11 @@ import java.util.List;
 
 public class Umano implements Observable, Giocatore {
 
+    // L'ultima carta coinvolta.
+    private Carta carta;
+
+    private boolean cartaAggiunta = false;
+
     // Lista degli osservatori.
     private final List<Observer> observers;
 
@@ -42,7 +47,10 @@ public class Umano implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void add(Carta carta) {
+        this.cartaAggiunta = true;
+        this.carta = carta; // Ultima carta coinvolta.
         this.carte.add(carta);
+        updateAll();
     }
 
     /**
@@ -51,7 +59,19 @@ public class Umano implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void remove(Carta carta) {
+        this.cartaAggiunta = false;
+        this.carta = carta; // Ultima carta coinvolta.
         this.carte.remove(carta);
+        updateAll();
+    }
+
+    /**
+     * Restituisce l'ultima carta
+     * coinvolta.
+     * @return Un oggetto Carta.
+     */
+    public Carta getCarta() {
+        return carta;
     }
 
     /**
@@ -71,8 +91,10 @@ public class Umano implements Observable, Giocatore {
      */
     public void setNome(String nome) {
         int length = nome.length();
-        if(length == 0 || length > 20)
-            throw new IllegalArgumentException("Lunghezza del nome non valida.");
+        if(length == 0)
+            throw new IllegalArgumentException("Lunghezza del nickname uguale a 0 non accettata.");
+        else if(length > 20)
+            throw new IllegalArgumentException("Lunghezza del nickname superiore a 20 non accettata.");
         this.nome = nome;
     }
 

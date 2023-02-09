@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CambiaPannello;
+import Controller.ControlloreNickname;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -99,7 +100,7 @@ public class Menu extends JPanel {
         // Bottone start.
         JButton start = new JButton("Start");
         start.setFont(new Font(Font.DIALOG, Font.ITALIC, 30));
-        start.addActionListener(new CambiaPannello(cardPannello, CardPannello.PARTITA));
+        start.addActionListener(ControlloreNickname.getControlloreNickname());
 
         GridBagConstraints gbc = new GridBagConstraints();
 
