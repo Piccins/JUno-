@@ -2,53 +2,59 @@ package view;
 
 import controller.ControlloreNickname;
 import controller.InizializzatorePartita;
-import model.giocatori.Bot;
-import model.giocatori.GestoreGiocatori;
-import model.giocatori.Giocatore;
 import view.giocatori.PannelloCarteBot1;
-
-import javax.swing.*;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import view.giocatori.PannelloCarteBot2;
+import view.giocatori.PannelloCarteBot3;
+import view.giocatori.PannelloCarteUmano;
 
 public class Inizializzatore {
 
     private Inizializzatore() {}
 
     public static void inizializza() {
-        // VIEW
-
-        // Pannelli dei giocatori.
+        //////////////////////
+        // Istanze della view.
         PannelloCarteBot1 pannelloCarteBot1 = PannelloCarteBot1.getPannelloCarteBot1();
-
+        PannelloCarteBot2 pannelloCarteBot2 = PannelloCarteBot2.getPannelloCarteBot2();
+        PannelloCarteBot3 pannelloCarteBot3 = PannelloCarteBot3.getPannelloCarteBot3();
+        PannelloCarteUmano pannelloCarteUmano = PannelloCarteUmano.getPannelloCarteUmano();
+        PannelloCentralePartita pannelloCentralePartita = PannelloCentralePartita.getPannelloCentralePartita();
         Partita partita = Partita.getPartita();
         Menu menu = Menu.getMenu();
         CardPannello cardPannello = CardPannello.getCardPannello();
         Sfondo sfondo = Sfondo.getSfondo();
         Finestra finestra = Finestra.getFinestra();
+        ///////////////////////////////////////////
 
+        ///////////////////////////////
+        // Impostazione della view. //
         menu.setCardPannello(cardPannello);
         cardPannello.setPartita(partita);
         cardPannello.setMenu(menu);
         sfondo.setPannello(cardPannello);
         finestra.setSfondo(sfondo);
+        partita.setPannelloCenter(pannelloCentralePartita);
+        partita.setPannelloSouth(pannelloCarteUmano);
+        partita.setPannelloWest(pannelloCarteBot1);
+        partita.setPannelloNorth(pannelloCarteBot2);
+        partita.setPannelloEast(pannelloCarteBot3);
+        ////////////////////////////////////////
 
-        partita.setPannelloEast(pannelloCarteBot1);
-        partita.setPannelloWest(new JPanel());
-        partita.setPannelloNorth(new JPanel());
-        partita.setPannelloSouth(new JPanel());
-        partita.setPannelloCenter(new JPanel());
-
+        ///////////////////////////////
+        // Inizializzazione della view.
         menu.inizializza();
         partita.inizializza();
         cardPannello.inizializza();
         sfondo.inizializza();
         finestra.inizializza();
-
         pannelloCarteBot1.inizializza();
+        pannelloCarteBot2.inizializza();
+        pannelloCarteBot3.inizializza();
+        pannelloCarteUmano.inizializza();
+        pannelloCentralePartita.inizializza();
+        ////////////////////////////////
 
         // CONTROLLER.
-
         ControlloreNickname.getControlloreNickname()
                 .addObserver(InizializzatorePartita.getInizializzatorePartita());
     }

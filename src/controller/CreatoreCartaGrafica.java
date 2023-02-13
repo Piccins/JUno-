@@ -3,6 +3,7 @@ package controller;
 import model.carta.Azione;
 import model.carta.Carta;
 import model.carta.Colore;
+import view.CartaGrafica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +19,8 @@ public class CreatoreCartaGrafica {
         return creatoreCartaGrafica;
     }
 
-    public JButton creaCartaGrafica(Carta carta) {
-        JButton cartaGrafica = new JButton();
+    public CartaGrafica creaCartaGrafica(Carta carta) {
+        CartaGrafica cartaGrafica = new CartaGrafica(carta);
 
         // Dati della carta.
         Colore colore = carta.getColore();
@@ -34,20 +35,24 @@ public class CreatoreCartaGrafica {
             percorso.append(colore).append(azione);
         }
 
-        ImageIcon imageIcon = new ImageIcon(percorso.toString() + ".png");
+
+        ImageIcon imageIcon = new ImageIcon(percorso + ".png");
 
         // Ridimensionamento dell'immagine.
-        int larghezza = imageIcon.getIconWidth();
-        int lunghezza = imageIcon.getIconHeight();
-        imageIcon.setImage(imageIcon.getImage().getScaledInstance(larghezza / 6, lunghezza / 6, Image.SCALE_SMOOTH));
+        int larghezza = imageIcon.getIconWidth() / 7;
+        int lunghezza = imageIcon.getIconHeight() / 7;
+        imageIcon.setImage(imageIcon.getImage()
+                .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
 
         // Impostazioni del bottone.
+        cartaGrafica.setPreferredSize(new Dimension(larghezza, lunghezza));
         cartaGrafica.setOpaque(false);
         cartaGrafica.setBorderPainted(false);
         cartaGrafica.setContentAreaFilled(false);
         cartaGrafica.setFocusPainted(false);
-
         cartaGrafica.setIcon(imageIcon);
+        cartaGrafica.setDisabledIcon(imageIcon);
+
         return cartaGrafica;
     }
 

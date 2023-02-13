@@ -6,24 +6,20 @@ import utilita.Observer;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * pannello east bot.
- */
-public class PannelloCarteBot1 extends JPanel implements Observer {
+public class PannelloCarteBot2 extends JPanel implements Observer {
 
-    private static PannelloCarteBot1 pannelloCarteBot1;
+    private static PannelloCarteBot2 pannelloCarteBot2;
 
-    private PannelloCarteBot1() {}
+    private PannelloCarteBot2() {}
 
-    public static PannelloCarteBot1 getPannelloCarteBot1() {
-        if(pannelloCarteBot1 == null) pannelloCarteBot1 = new PannelloCarteBot1();
-        return pannelloCarteBot1;
+    public static PannelloCarteBot2 getPannelloCarteBot2() {
+        if(pannelloCarteBot2 == null) pannelloCarteBot2 = new PannelloCarteBot2();
+        return pannelloCarteBot2;
     }
 
     public void inizializza() {
         setOpaque(false);
-        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.LINE_AXIS);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
     }
 
     @Override
@@ -31,26 +27,25 @@ public class PannelloCarteBot1 extends JPanel implements Observer {
         if(o instanceof Bot bot) {
             if(bot.isCartaAggiunta()) {
                 JButton cartaGrafica = new JButton();
-                ImageIcon imageIcon = new ImageIcon("resources/carte/RETROversoEAST.png");
+                ImageIcon imageIcon = new ImageIcon("resources/carte/RETROversoSOUTH.png");
 
                 // Ridimensionamento dell'immagine.
                 int larghezza = imageIcon.getIconWidth() / 7;
                 int lunghezza = imageIcon.getIconHeight() / 7;
                 imageIcon.setImage(imageIcon.getImage()
                         .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
-                cartaGrafica.setPreferredSize(new Dimension(larghezza, lunghezza));
-                cartaGrafica.setIcon(imageIcon);
 
                 // Impostazioni del bottone.
                 cartaGrafica.setOpaque(true);
                 cartaGrafica.setBorderPainted(false);
                 cartaGrafica.setContentAreaFilled(false);
                 cartaGrafica.setFocusPainted(false);
+                cartaGrafica.setPreferredSize(new Dimension(larghezza, lunghezza));
+                cartaGrafica.setIcon(imageIcon);
 
                 add(cartaGrafica);
 
-            } else
-                remove(getComponents().length - 1);
+            } else remove(getComponents().length - 1);
 
             revalidate();
             repaint();
@@ -58,5 +53,4 @@ public class PannelloCarteBot1 extends JPanel implements Observer {
         } else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido. Giocatore atteso.");
     }
-
 }

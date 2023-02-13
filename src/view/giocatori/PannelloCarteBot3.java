@@ -6,23 +6,19 @@ import utilita.Observer;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * pannello east bot.
- */
-public class PannelloCarteBot1 extends JPanel implements Observer {
+public class PannelloCarteBot3 extends JPanel implements Observer {
 
-    private static PannelloCarteBot1 pannelloCarteBot1;
+    private static PannelloCarteBot3 pannelloCarteBot3;
 
-    private PannelloCarteBot1() {}
+    private PannelloCarteBot3() {}
 
-    public static PannelloCarteBot1 getPannelloCarteBot1() {
-        if(pannelloCarteBot1 == null) pannelloCarteBot1 = new PannelloCarteBot1();
-        return pannelloCarteBot1;
+    public static PannelloCarteBot3 getPannelloCarteBot3() {
+        if(pannelloCarteBot3 == null) pannelloCarteBot3 = new PannelloCarteBot3();
+        return pannelloCarteBot3;
     }
 
     public void inizializza() {
         setOpaque(false);
-        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.LINE_AXIS);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
@@ -31,7 +27,7 @@ public class PannelloCarteBot1 extends JPanel implements Observer {
         if(o instanceof Bot bot) {
             if(bot.isCartaAggiunta()) {
                 JButton cartaGrafica = new JButton();
-                ImageIcon imageIcon = new ImageIcon("resources/carte/RETROversoEAST.png");
+                ImageIcon imageIcon = new ImageIcon("resources/carte/RETROversoWEST.png");
 
                 // Ridimensionamento dell'immagine.
                 int larghezza = imageIcon.getIconWidth() / 7;
@@ -49,8 +45,7 @@ public class PannelloCarteBot1 extends JPanel implements Observer {
 
                 add(cartaGrafica);
 
-            } else
-                remove(getComponents().length - 1);
+            } else remove(getComponents().length - 1);
 
             revalidate();
             repaint();

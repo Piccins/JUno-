@@ -6,6 +6,9 @@ import utilita.Observable;
 import utilita.Observer;
 import view.CardPannello;
 import view.giocatori.PannelloCarteBot1;
+import view.giocatori.PannelloCarteBot2;
+import view.giocatori.PannelloCarteBot3;
+import view.giocatori.PannelloCarteUmano;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,16 +26,23 @@ public class InizializzatorePartita implements Observer {
     }
 
     public void inizializzaPartita() {
+        // Creazione dei giocatori.
         GestoreGiocatori gestoreGiocatori = GestoreGiocatori.getGestoreGiocatori();
         gestoreGiocatori.setGiocatori();
+
+        // Lista dei giocatori.
         List<Giocatore> giocatori = gestoreGiocatori.getGiocatori();
+
+        // Inizializzazione del mazzo.
         InizializzatoreDelMazzoUno.getInizializzatoreDelMazzoUno().actionPerformed(null);
+
+        // Aggiunta degli osservatori.
         ((Observable) giocatori.get(0)).addObserver(PannelloCarteBot1.getPannelloCarteBot1());
+        ((Observable) giocatori.get(1)).addObserver(PannelloCarteBot2.getPannelloCarteBot2());
+        ((Observable) giocatori.get(2)).addObserver(PannelloCarteBot3.getPannelloCarteBot3());
+        ((Observable) giocatori.get(3)).addObserver(PannelloCarteUmano.getPannelloCarteUmano());
 
-        // giocatori.get(1).addObserver(pannelloCarteBot2);
-        // giocatori.get(2).addObserver(pannelloCarteBot3);
-        // giocatori.get(3).addObserver(pannelloCarteUmano);
-
+        // Mostra del pannello partita.
         CardLayout layoutManager = (CardLayout) CardPannello.getCardPannello().getLayout();
         layoutManager.show(CardPannello.getCardPannello(), CardPannello.PARTITA);
     }

@@ -59,10 +59,23 @@ public class Umano implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void remove(Carta carta) {
+        // Controllo esistenza della carta.
+        if(!this.carte.remove(carta))
+            throw new IllegalArgumentException(
+                    "La carta specificata non è presente nella" +
+                            "lista delle carte di questo giocatore.");
         this.cartaAggiunta = false;
         this.carta = carta; // Ultima carta coinvolta.
-        this.carte.remove(carta);
         updateAll();
+    }
+
+    /**
+     * Restituisce true se, e soltanto se, l'ultima
+     * carta coinvolta è stata aggiunta.
+     * @return Un valore booleano.
+     */
+    public boolean isCartaAggiunta() {
+        return cartaAggiunta;
     }
 
     /**
