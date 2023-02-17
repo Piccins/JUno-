@@ -10,7 +10,6 @@ import view.giocatori.PannelloCarteBot2;
 import view.giocatori.PannelloCarteBot3;
 import view.giocatori.PannelloCarteUmano;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
@@ -36,6 +35,11 @@ public class InizializzatorePartita implements Observer {
         // Inizializzazione del mazzo.
         InizializzatoreDelMazzoUno.getInizializzatoreDelMazzoUno().actionPerformed(null);
 
+        // La gestione della prima carta dev'essere effettuata
+        // dopo l'invocazione del metodo actionPerformed della
+        // classe InizializzatoreDelMazzoUno.
+        GestoreCartaIniziale.getControlloreCartaIniziale().gestisci();
+
         // Aggiunta degli osservatori.
         ((Observable) giocatori.get(0)).addObserver(PannelloCarteBot1.getPannelloCarteBot1());
         ((Observable) giocatori.get(1)).addObserver(PannelloCarteBot2.getPannelloCarteBot2());
@@ -49,7 +53,7 @@ public class InizializzatorePartita implements Observer {
 
     @Override
     public void update(Object o) {
-        if(o instanceof ControlloreNickname) {
+        if(o instanceof GestoreNickname) {
             inizializzaPartita();
         } else throw new IllegalArgumentException("Tipo dell'oggetto non valido. ControlloreNickname atteso.");
     }

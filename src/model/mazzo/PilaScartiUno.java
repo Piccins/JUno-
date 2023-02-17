@@ -10,6 +10,8 @@ import utilita.Observable;
 import utilita.Observer;
 
 public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Observable {
+
+	private Carta carta;
 	
 	private static PilaScartiUno pilaScartiUno;
 	private final List<Observer> Observers;
@@ -42,11 +44,15 @@ public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Ob
 		// Controllo validità
 		// Secondo parametro: carta in cima
 		// Primo parametro: carta da controllare.
-		if(ControlloreCartaValida.getControlloreCartaValida().isCompatibile(carta, peek()))
+		this.carta = carta;
+		if(size() == 0 || ControlloreCartaValida.getControlloreCartaValida().isCompatibile(carta, peek()))
 			push(carta);
 		else throw new IllegalArgumentException("La carta specificata non è " +
 				"compatibile con la carta in cima a questa pila degli scarti.");
 		updateAll();
 	}
 
+	public Carta getCarta() {
+		return carta;
+	}
 }

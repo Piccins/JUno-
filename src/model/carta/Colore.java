@@ -6,7 +6,4 @@ package model.carta;
  * @author seren
  *
  */
-public interface Colore extends Nero, Blu, Rosso, Giallo, Verde {
-	
-	
-}
+public interface Colore extends Nero, Blu, Rosso, Giallo, Verde {}

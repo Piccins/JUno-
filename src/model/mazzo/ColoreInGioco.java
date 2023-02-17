@@ -5,17 +5,20 @@ import model.carta.Colore;
 import utilita.Observable;
 import utilita.Observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ColoreInGioco implements Observable, Observer {
 
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     private Colore colore;
 
     private static ColoreInGioco coloreInGioco;
 
-    private ColoreInGioco() {}
+    private ColoreInGioco() {
+        observers = new ArrayList<>();
+    }
 
     public static ColoreInGioco getColoreInGioco() {
         if(coloreInGioco == null)  coloreInGioco = new ColoreInGioco();
@@ -24,6 +27,7 @@ public class ColoreInGioco implements Observable, Observer {
 
     public void setColore(Colore colore) {
         this.colore = colore;
+        updateAll();
     }
 
     public Colore getColore() {
@@ -47,9 +51,9 @@ public class ColoreInGioco implements Observable, Observer {
 
     @Override
     public void update(Object o) {
-        if(o instanceof PilaScarti<?> pilaScarti) {
-            Carta carta = (Carta) pilaScarti.get(pilaScarti.size() - 1);
-            if(carta.getColore() != null) setColore(carta.getColore());
+        if(o instanceof PilaScartiUno pilaScarti) {
+            Carta carta = pilaScarti.getCarta();
+            if(!carta.getColore().isNero()) setColore(carta.getColore());
         } else throw new IllegalArgumentException("Tipo dell'oggetto specificato errato. " +
                 "Tipo atteso: PilaScarti.");
     }

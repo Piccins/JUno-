@@ -47,11 +47,14 @@ public class PannelloCarteBot1 extends JPanel implements Observer {
                 cartaGrafica.setContentAreaFilled(false);
                 cartaGrafica.setFocusPainted(false);
 
+                // Aggiunta della carta.
                 add(cartaGrafica);
 
             } else
                 remove(getComponents().length - 1);
 
+            // Sempre dopo aver aggiunto o rimosso
+            // componenti dall'interfaccia grafica.
             revalidate();
             repaint();
 

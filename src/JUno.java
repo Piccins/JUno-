@@ -1,6 +1,8 @@
+import model.GestoreTurni;
 import model.giocatori.Bot;
 import model.giocatori.GestoreGiocatori;
 import model.giocatori.Giocatore;
+import model.giocatori.Umano;
 import model.mazzo.MazzoUno;
 import view.Finestra;
 import view.Inizializzatore;
@@ -24,25 +26,13 @@ public class JUno {
 
         Finestra.getFinestra().setVisible(true);
 
-
-        int x = 25;
-        int i = 0;
         try {
             TimeUnit.SECONDS.sleep(5);
-            Bot bot = (Bot) giocatoreList.get(0);
-            while(true) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(300);
-                    giocatoreList.get(i).add(MazzoUno.getMazzoUno().pesca());
-                    i ++; x--;
-                    if(x == 0);
-                    if(i == 4) i = 0;
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ignore) {}
+        GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
+        while(true) {
+            if(gestoreTurni.giocatoreAttuale() == Umano.getUmano()) break;
+            else gestoreTurni.impostaGiocatoreSuccessivo();
         }
     }
 

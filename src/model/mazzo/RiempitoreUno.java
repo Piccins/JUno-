@@ -49,9 +49,7 @@ public class RiempitoreUno implements Riempitore<Carta>, Observer, Observable {
 
 	@Override
 	public void update(Object o) {		
-		if (o instanceof List<?> lista ) {
-			// Mappa gli oggetti della lista in oggetti di tipo carta e converte
-			// lo stream in una lista di oggetti Carta
+		if (o instanceof List<?> lista) {
 			if(lista.size() < 10)
 				riempi();
 		} else throw new IllegalArgumentException("il tipo in input è errato. Tipo atteso: MazzoUno");

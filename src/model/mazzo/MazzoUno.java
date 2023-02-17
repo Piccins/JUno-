@@ -26,8 +26,9 @@ public class MazzoUno extends Stack<Carta> implements Mazzo<Carta>, Observable, 
 
 	@Override
 	public Carta pesca() {
-		updateAll();
+		if(size() == 0) throw new IllegalArgumentException("Deck vuoto");
 		cartaPescata = pop();
+		updateAll();
 		return cartaPescata;
 	}
 

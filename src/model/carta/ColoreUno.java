@@ -1,8 +1,17 @@
 package model.carta;
 
 public enum ColoreUno implements Colore {
-	
-	BLU,ROSSO,GIALLO,VERDE,NERO;
+
+	/** Colore Blue. */
+	BLU,
+
+	ROSSO,
+
+	GIALLO,
+
+	VERDE,
+
+	NERO;
 
 	
 	@Override
