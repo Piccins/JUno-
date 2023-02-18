@@ -20,6 +20,7 @@ public class Inizializzatore {
         // Istanze della view.
         Mazzo mazzo = Mazzo.getMazzo();
         Colore colore = Colore.getColore();
+        PannelloColori pannelloColori = PannelloColori.getPannelloColori();
         Verso verso = Verso.getVerso();
         PilaScarti pilaScarti = PilaScarti.getPilaScarti();
         PannelloCarteBot1 pannelloCarteBot1 = PannelloCarteBot1.getPannelloCarteBot1();
@@ -47,6 +48,7 @@ public class Inizializzatore {
         partita.setPannelloNorth(pannelloCarteBot2);
         partita.setPannelloEast(pannelloCarteBot3);
         pannelloCentralePartita.setColore(colore);
+        pannelloCentralePartita.setColori(pannelloColori);
         pannelloCentralePartita.setPilaScarti(pilaScarti);
         pannelloCentralePartita.setMazzo(mazzo);
         pannelloCentralePartita.setVerso(verso);
@@ -56,6 +58,7 @@ public class Inizializzatore {
         // Inizializzazione della view.
         mazzo.inizializza();
         colore.inizializza();
+        pannelloColori.inizializza();
         pilaScarti.inizializza();
         verso.inizializza();
         menu.inizializza();

@@ -8,6 +8,9 @@ import java.awt.*;
  */
 public class CardPannello extends JPanel {
 
+    /** ActionCommand del pannello del vincitore. */
+    public static final String PANNELLO_VINCITORE = "Vincitore";
+
     /** ActionCommand del menu */
     public static final String MENU = "Menu";
 
@@ -20,11 +23,18 @@ public class CardPannello extends JPanel {
     // La partita
     private JPanel partita;
 
+    // Pannello del vincitore.
+    private JPanel pannelloVincitore;
+
+    // Istanza della classe CardPannello.
     private static CardPannello cardPannello;
 
     /* Costruttore. */
     private  CardPannello() {}
 
+    /**
+     * Inizializza
+     */
     public void inizializza() {
         setOpaque(false);
         setLayout(new CardLayout());

@@ -78,19 +78,12 @@ public class Umano implements Observable, Giocatore {
         return cartaAggiunta;
     }
 
-    /**
-     * Restituisce l'ultima carta
-     * coinvolta.
-     * @return Un oggetto Carta.
-     */
+    @Override
     public Carta getCarta() {
         return carta;
     }
 
-    /**
-     * Restituisce le carte in mano di questo giocatore.
-     * @return Una lista di carte.
-     */
+    @Override
     public List<Carta> getCarte() {
         return carte;
     }

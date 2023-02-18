@@ -27,6 +27,9 @@ public class PannelloCentralePartita extends JPanel {
     // Pannello del verso.
     private JPanel verso;
 
+    // Pannello dei colori.
+    private JPanel colori;
+
     // L'istanza della classe PannelloCentralePartita.
     private static PannelloCentralePartita pannelloCentralePartita;
 
@@ -46,7 +49,7 @@ public class PannelloCentralePartita extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Mazzo.
-        gbc.insets = new Insets(0, 0, 100, 250);
+        gbc.insets = new Insets(0, 0, 75, 230);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.ipadx = 0;
         gbc.ipady = 0;
@@ -57,7 +60,7 @@ public class PannelloCentralePartita extends JPanel {
         add(mazzo, gbc);
 
         // Pila scarti.
-        gbc.insets = new Insets(0, 250, 100, 0);
+        gbc.insets = new Insets(0, 200, 75, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -68,7 +71,7 @@ public class PannelloCentralePartita extends JPanel {
         add(pilaScarti, gbc);
 
         // Colore
-        gbc.insets = new Insets(200, 0, 0, 150);
+        gbc.insets = new Insets(0, 205, 350, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -79,7 +82,7 @@ public class PannelloCentralePartita extends JPanel {
         add(colore, gbc);
 
         // Verso
-        gbc.insets = new Insets(200, 150, 0, 0);
+        gbc.insets = new Insets(0, 53, 50, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -88,22 +91,62 @@ public class PannelloCentralePartita extends JPanel {
         gbc.weightx = 0;
         gbc.weighty = 0;
         add(verso, gbc);
+
+        // Pannello colori
+        gbc.insets = new Insets(230, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(colori, gbc);
     }
 
+    /**
+     * Imposta il pannello del colore corrente
+     * di questa istanza.
+     * @param colore Un oggetto JPanel.
+     */
     public void setColore(JPanel colore) {
         this.colore = colore;
     }
 
+    /**
+     * Imposta il pannello della pila
+     * degli scarti di questa istanza.
+     * @param pilaScarti Un oggetto JPanel.
+     */
     public void setPilaScarti(JPanel pilaScarti) {
         this.pilaScarti = pilaScarti;
     }
 
+    /**
+     * Imposta il pannello del mazzo
+     * di questa istanza.
+     * @param mazzo Un oggetto JPanel.
+     */
     public void setMazzo(JPanel mazzo) {
         this.mazzo = mazzo;
     }
 
+    /**
+     * Imposta il pannello del verso di
+     * questa istanza.
+     * @param verso Un oggetto JPanel.
+     */
     public void setVerso(JPanel verso) {
         this.verso = verso;
+    }
+
+    /**
+     * Imposta il pannello dei colori
+     * di questa istanza.
+     * @param colori Un oggetto JPanel.
+     */
+    public void setColori(JPanel colori) {
+        this.colori = colori;
     }
 
 }

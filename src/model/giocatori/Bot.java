@@ -9,25 +9,43 @@ import utilita.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Questa classe definisce i bot nel
+ * gioco di carte Uno.
+ */
 public class Bot implements Observable, Giocatore {
 
     // L'ultima carta coinvolta.
     private Carta carta;
 
+    // Comunica se l'ultima carta
+    // coinvolta è stata aggiunta.
     private boolean cartaAggiunta = false;
 
+    // Le carte del bot.
     private final List<Carta> carte;
 
+    // La lista degli osservatori di questo bot.
     private final List<Observer> observers;
 
+    // Il nome del bot.
     private final String nome;
 
+    /**
+     * Costruisce un'istanza Bot
+     * con il nome specificato.
+     * @param nome Il nome del bot.
+     */
     public Bot(String nome) {
         this.nome = nome;
         this.carte = new ArrayList<>();
         this.observers = new ArrayList<>();
     }
 
+    /**
+     * Effettua una mossa nel gioco di carte Uno.
+     * @return Un oggetto Carta.
+     */
     public Carta mossa() {
         // In base alla carta in cima alla pila degli scarti
         // questo giocatore (bot) decide quale carta fornire
@@ -62,31 +80,26 @@ public class Bot implements Observable, Giocatore {
         updateAll();
     }
 
-    /**
-     * Restituisce l'ultima carta coinvolta.
-     * @return Un oggetto carta.
-     */
+    @Override
     public Carta getCarta() {
         return carta;
     }
 
+    /**
+     * Restituisce true se l'ultima carta
+     * coinvolta è stato aggiunta, altrimenti false.
+     * @return Un valore booleano.
+     */
     public boolean isCartaAggiunta() {
         return cartaAggiunta;
     }
 
-    /**
-     * Restituisce le carte in mano di
-     * questo giocatore.
-     * @return Un oggetto List.
-     */
+    @Override
     public List<Carta> getCarte() {
         return carte;
     }
 
-    /**
-     * Restituisce il nome di questo giocatore.
-     * @return Una stringa.
-     */
+    @Override
     public String getNome() {
         return nome;
     }

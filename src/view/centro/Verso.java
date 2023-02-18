@@ -33,6 +33,11 @@ public class Verso extends JPanel implements Observer {
         giro = new ImageIcon("resources/GIRO.png");
         giroInvertito = new ImageIcon("resources/GIROINVERTITO.png");
 
+        int larghezza = giro.getIconWidth() / 2;
+        int lunghezza = giro.getIconWidth() / 2;
+        giro.setImage(giro.getImage().getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
+        giroInvertito.setImage(giroInvertito.getImage().getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
+
         // Impostazione label.
         this.label = new JLabel();
         label.setOpaque(false);

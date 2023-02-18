@@ -1,6 +1,11 @@
 package view.centro;
 
+import controller.ImpostaColore;
+import model.carta.ColoreUno;
+import utilita.Observer;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Questa classe descrive il pannello dei colori, ovvero
@@ -9,7 +14,7 @@ import javax.swing.*;
  * all'utente dell'applicazione d'impostare un colore nella
  * classe ColoreInGio'.
  */
-public class PannelloColori extends JPanel {
+public class PannelloColori extends JPanel implements Observer {
 
     // L'istanza della classe PannelloColori
     private static PannelloColori pannelloColori;
@@ -31,7 +36,100 @@ public class PannelloColori extends JPanel {
      * con valori di default.
      */
     public void inizializza() {
-        
+        setLayout(new GridBagLayout());
+        setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        // Bottoni dei colori.
+        JButton rosso = new JButton(new ImageIcon("resources/ROSSO.png"));
+        JButton blu = new JButton(new ImageIcon("resources/BLU.png"));
+        JButton giallo = new JButton(new ImageIcon("resources/GIALLO.png"));
+        JButton verde = new JButton(new ImageIcon("resources/VERDE.png"));
+
+        // Impostazione della
+        // trasparenza dei bottoni.
+        rendiTrasparente(rosso);
+        rendiTrasparente(blu);
+        rendiTrasparente(giallo);
+        rendiTrasparente(verde);
+        // Ridimensionamento immagini.
+        ridimensiona(rosso);
+        ridimensiona(blu);
+        ridimensiona(giallo);
+        ridimensiona(verde);
+
+        // Ascoltatori.
+        rosso.addActionListener(new ImpostaColore(ColoreUno.ROSSO));
+        blu.addActionListener(new ImpostaColore(ColoreUno.BLU));
+        giallo.addActionListener(new ImpostaColore(ColoreUno.GIALLO));
+        verde.addActionListener(new ImpostaColore(ColoreUno.VERDE));
+
+        // Rosso
+        gbc.insets = new Insets(0, 330, 0, 0);
+        gbc.anchor = GridBagConstraints.PAGE_START;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(rosso, gbc);
+
+        // Blu
+        gbc.insets = new Insets(0, 100, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(blu, gbc);
+
+        // Giallo
+        gbc.insets = new Insets(0, 0, 0, 105);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(giallo, gbc);
+
+        // Verde
+        gbc.insets = new Insets(0, 0, 0, 370);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(verde, gbc);
+    }
+
+    @Override
+    public void update(Object o) {
+        // Questo aggiornamento permette di rendere
+        // visibile automaticamente questo pannello
+        // dei colori quando l'utente dell'applicazione
+        // scarta una carta di tipo jolly.
+    }
+
+    private void rendiTrasparente(JButton bottone) {
+        bottone.setOpaque(false);
+        bottone.setContentAreaFilled(false);
+        bottone.setBorderPainted(false);
+        bottone.setFocusPainted(false);
+    }
+
+    private void ridimensiona(JButton bottone) {
+        ImageIcon icona = (ImageIcon) bottone.getIcon();
+        int larghezza = icona.getIconWidth();
+        int lunghezza = icona.getIconHeight();
+        ((ImageIcon) bottone.getIcon()).setImage(icona.getImage()
+                .getScaledInstance(larghezza / 3, lunghezza / 3, Image.SCALE_SMOOTH));
     }
 
 }
