@@ -12,8 +12,6 @@ public class Menu extends JPanel {
 
     private final ButtonGroup gruppoRadio = new ButtonGroup();
 
-    private JPanel cardPannello;
-
     private final JTextField textField;
 
     private static Menu menu;
@@ -29,19 +27,16 @@ public class Menu extends JPanel {
 
         // impostazione del titolo
         JLabel titolo = new JLabel();
-        titolo = new JLabel();
         titolo.setIcon(new ImageIcon("resources/titolo.png"));
         titolo.setPreferredSize(new Dimension(834, 137));
 
         // impostazione nickname
         JLabel nickname = new JLabel();
-        nickname = new JLabel();
         nickname.setText("Nickname: ");
         nickname.setFont(new Font(Font.DIALOG, Font.ITALIC, 30));
 
         // Avatar
         JLabel avatar = new JLabel();
-        avatar = new JLabel();
         avatar.setText("Avatar: ");
         avatar.setFont(new Font(Font.DIALOG, Font.ITALIC, 30));
 
@@ -51,19 +46,19 @@ public class Menu extends JPanel {
         JRadioButton radioCane = new JRadioButton(new ImageIcon("resources/cane.png"));
         radioCane.setBorder(border);
         radioCane.setSelected(true);
-        radioCane.setActionCommand("Radio cane");
+        radioCane.setActionCommand("CANE");
 
         // Radio gallo
         JRadioButton radioGallo = new JRadioButton(new ImageIcon("resources/gallo.png"));
         radioGallo.setBorder(null);
         radioGallo.setOpaque(false);
-        radioGallo.setActionCommand("Radio gallo");
+        radioGallo.setActionCommand("GALLO");
 
         // Radio tigre
         JRadioButton radioTigre = new JRadioButton(new ImageIcon("resources/tigre.png"));
         radioTigre.setBorder(null);
         radioTigre.setOpaque(false);
-        radioTigre.setActionCommand("Radio tigre");
+        radioTigre.setActionCommand("TIGRE");
 
         class CambiaColore implements ActionListener {
 
@@ -198,14 +193,6 @@ public class Menu extends JPanel {
     }
 
     /**
-     * Imposta il card pannello.
-     * @param cardPannello Un JPanel
-     */
-    public void setCardPannello(JPanel cardPannello) {
-        this.cardPannello = cardPannello;
-    }
-
-    /**
      * Restituisce il nickname inserito.
      * @return Il nickname.
      */
@@ -218,8 +205,15 @@ public class Menu extends JPanel {
      * selezionato.
      * @return Una stringa.
      */
-    public String getAvatarSelezionato() {
-        return gruppoRadio.getSelection().getActionCommand();
+    public ImageIcon getAvatarSelezionato() {
+        // Il comando azione che determina l'avatar selezionato.
+        String actionCommand = gruppoRadio.getSelection()
+                .getActionCommand();
+        if(actionCommand.equals("GALLO"))
+            return new ImageIcon("resources/gallo.png");
+        else if(actionCommand.equals("CANE"))
+            return new ImageIcon("resources/cane.png");
+        else return new ImageIcon("resources/tigre.png");
     }
 
 }

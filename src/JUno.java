@@ -1,9 +1,10 @@
 import model.GestoreTurni;
-import model.giocatori.Bot;
+import model.carta.Carta;
 import model.giocatori.GestoreGiocatori;
 import model.giocatori.Giocatore;
 import model.giocatori.Umano;
 import model.mazzo.MazzoUno;
+import model.mazzo.PilaScartiUno;
 import view.Finestra;
 import view.Inizializzatore;
 
@@ -17,6 +18,7 @@ public class JUno {
 
     /**
      * Esegue l'applicazione JUno.
+     *
      * @param args Gli argomenti passati nella riga di comando.
      */
     public static void main(String[] args) {
@@ -28,12 +30,18 @@ public class JUno {
 
         try {
             TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException ignore) {}
-        GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
-        while(true) {
-            if(gestoreTurni.giocatoreAttuale() == Umano.getUmano()) break;
-            else gestoreTurni.impostaGiocatoreSuccessivo();
+            MazzoUno mazzoUno = MazzoUno.getMazzoUno();
+            GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
+            while(true) {
+                TimeUnit.MILLISECONDS.sleep(350);
+                Carta carta = mazzoUno.pesca();
+                PilaScartiUno.getPilaScartiUno().scarta(carta);
+                gestoreTurni.giocatoreAttuale().add(carta);
+                gestoreTurni.impostaGiocatoreSuccessivo();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-    }
 
+    }
 }

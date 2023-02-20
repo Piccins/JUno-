@@ -1,12 +1,16 @@
 package controller;
 
 import model.GestoreTurni;
+import model.giocatori.Bot;
 import model.giocatori.Giocatore;
 import utilita.Observable;
 import utilita.Observer;
+import view.CardPannello;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Questa classe definisce un controllore di vincita nel
@@ -36,9 +40,28 @@ public class ControlloreVincita implements Observable {
     public void controlla() {
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         Giocatore giocatore = gestoreTurni.giocatoreAttuale();
-        if(giocatore.getCarte().size() == 0) {
-            // Mostra del pannello del vincitore.
-        } else updateAll();
+        int size = giocatore.getCarte().size();
+        if(size == 0)
+            ((CardLayout) CardPannello.getCardPannello().getLayout())
+                    .show(CardPannello.getCardPannello(), CardPannello.PANNELLO_VINCITORE);
+        else {
+            if(size == 1) {
+                if(giocatore instanceof Bot) {
+                    Random r = new Random();
+                    int valore = r.nextInt(2);
+                    if (valore == 1) {
+                        Penitenza.getPenitenza()
+                                .getTimer().start();
+                    } else {
+
+                        // Il bot ha detto uno.
+                        updateAll();
+                    }
+                } else {
+                    TimerPenitenza.getTimerPenitenza().start();
+                }
+            } else updateAll();
+        }
     }
 
     @Override

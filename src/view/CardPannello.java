@@ -17,29 +17,33 @@ public class CardPannello extends JPanel {
     /** ActionCommand della partita. */
     public static final String PARTITA = "Partita";
 
+    // Il layout manager di questa classe.
+    private CardLayout layoutManager;
+
+    // Il pannello del vincitore.
+    private JPanel pannelloVincitore;
+
     // Il menu.
     private JPanel menu;
 
     // La partita
     private JPanel partita;
 
-    // Pannello del vincitore.
-    private JPanel pannelloVincitore;
-
     // Istanza della classe CardPannello.
     private static CardPannello cardPannello;
 
-    /* Costruttore. */
+    // Costruttore dell'istanza CardPannello.
     private  CardPannello() {}
 
     /**
-     * Inizializza
+     * Inizializza questa istanza.
      */
     public void inizializza() {
         setOpaque(false);
-        setLayout(new CardLayout());
+        setLayout(layoutManager);
         add(menu, MENU);
         add(partita, PARTITA);
+        add(pannelloVincitore, PANNELLO_VINCITORE);
     }
 
     /**
@@ -65,6 +69,22 @@ public class CardPannello extends JPanel {
      */
     public void setPartita(JPanel partita) {
         this.partita = partita;
+    }
+
+    /**
+     * Imposta il pannello del vincitore.
+     * @param pannelloVincitore Un oggetto JPanel.
+     */
+    public void setPannelloVincitore(JPanel pannelloVincitore) {
+        this.pannelloVincitore = pannelloVincitore;
+    }
+
+    /**
+     * Imposta il layout manager di questa istanza.
+     * @param layoutManager Un oggetto CardLayout.
+     */
+    public void setLayoutManager(CardLayout layoutManager) {
+        this.layoutManager = layoutManager;
     }
 
 }

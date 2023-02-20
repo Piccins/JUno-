@@ -18,6 +18,8 @@ public class Inizializzatore {
     public static void inizializza() {
         //////////////////////
         // Istanze della view.
+        MyCardLayout cardLayout = new MyCardLayout();
+        PannelloVincitore pannelloVincitore = PannelloVincitore.getPannelloVincitore();
         Mazzo mazzo = Mazzo.getMazzo();
         Colore colore = Colore.getColore();
         PannelloColori pannelloColori = PannelloColori.getPannelloColori();
@@ -37,9 +39,10 @@ public class Inizializzatore {
 
         ///////////////////////////////
         // Impostazione della view. //
-        menu.setCardPannello(cardPannello);
+        cardPannello.setLayoutManager(cardLayout);
         cardPannello.setPartita(partita);
         cardPannello.setMenu(menu);
+        cardPannello.setPannelloVincitore(pannelloVincitore);
         sfondo.setPannello(cardPannello);
         finestra.setSfondo(sfondo);
         partita.setPannelloCenter(pannelloCentralePartita);
@@ -71,6 +74,7 @@ public class Inizializzatore {
         pannelloCarteBot3.inizializza();
         pannelloCarteUmano.inizializza();
         pannelloCentralePartita.inizializza();
+        pannelloVincitore.inizializza();
         //////////////////////////////////////
 
         ///////////////////////////////////////////
@@ -80,6 +84,9 @@ public class Inizializzatore {
         GestoreTurni.getGestoreTurni().addObserver(verso);
         GestoreNickname.getControlloreNickname()
                 .addObserver(InizializzatorePartita.getInizializzatorePartita());
+        GestoreNickname.getControlloreNickname()
+                .addObserver(partita);
+        cardLayout.addObserver(pannelloVincitore);
     }
 
 }

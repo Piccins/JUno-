@@ -99,8 +99,8 @@ public class Umano implements Observable, Giocatore {
         int length = nome.length();
         if(length == 0)
             throw new IllegalArgumentException("Lunghezza del nickname uguale a 0 non accettata.");
-        else if(length > 20)
-            throw new IllegalArgumentException("Lunghezza del nickname superiore a 20 non accettata.");
+        else if(length > 8)
+            throw new IllegalArgumentException("Lunghezza del nickname superiore a 8 non accettata.");
         this.nome = nome;
     }
 

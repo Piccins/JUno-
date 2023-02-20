@@ -2,7 +2,6 @@ package controller;
 
 import model.mazzo.*;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +24,12 @@ public class InizializzatoreDelMazzoUno implements ActionListener {
         RiempitoreUno riempitoreUno = RiempitoreUno.getRiempitore();
         MazzoUno mazzo = MazzoUno.getMazzoUno();
         PilaScartiUno pilaScartiUno = PilaScartiUno.getPilaScartiUno();
+
+        ////////////////////////////////////////////////
+        // Impostazione delle classi necessarie.
+        riempitoreUno.setPilaScarti(pilaScartiUno);
+        riempitoreUno.setMazzo(mazzo);
+        mescolatoreUno.setMazzo(mazzo);
 
         /////////////////////////////////////
         // Connessioni Observer - Observable
