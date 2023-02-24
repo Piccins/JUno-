@@ -1,6 +1,7 @@
 package view.giocatori;
 
 import controller.CreatoreCartaGrafica;
+import controller.DistributoreCarte;
 import controller.ScartoAzione;
 import model.ControlloreCartaValida;
 import model.GestoreTurni;
@@ -9,6 +10,7 @@ import model.giocatori.Umano;
 import model.mazzo.PilaScartiUno;
 import utilita.Observer;
 import view.CartaGrafica;
+import view.Partita;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -94,7 +96,13 @@ public class PannelloCarteUmano extends JPanel implements Observer {
             revalidate();
             repaint();
 
-        } else throw new IllegalArgumentException(
+        } else if(o instanceof DistributoreCarte) {
+            // Le carte sono state distribuite.
+            // Possiamo abilitare il campo partitaIniziata.
+            partitaIniziata = true;
+        }
+
+        else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido. Umano atteso");
     }
 

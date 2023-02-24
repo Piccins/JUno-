@@ -1,6 +1,8 @@
 package view;
 
 import controller.GestoreNickname;
+import controller.StopPenitenzaAzione;
+import controller.TimerPenitenza;
 import utilita.Observer;
 
 import javax.swing.*;
@@ -135,12 +137,13 @@ public class Partita extends JPanel implements Observer {
         bottoneUno.setBorderPainted(false);
         bottoneUno.setFocusPainted(false);
         ImageIcon icona = new ImageIcon("resources/UNO.png");
-        int larghezza = icona.getIconWidth() / 6;
-        int lunghezza = icona.getIconHeight() / 6;
+        int larghezza = icona.getIconWidth() / 7;
+        int lunghezza = icona.getIconHeight() / 7;
         icona.setImage(icona.getImage()
                 .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
         bottoneUno.setIcon(icona);
-        gbc.insets = new Insets(0, 1550, 0, 0);
+        bottoneUno.addActionListener(new StopPenitenzaAzione(TimerPenitenza.getTimerPenitenza()));
+        gbc.insets = new Insets(0, 950, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.ipadx = 0;
         gbc.ipady = 0;

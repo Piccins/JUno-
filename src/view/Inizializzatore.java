@@ -1,5 +1,6 @@
 package view;
 
+import controller.DistributoreCarte;
 import controller.GestoreNickname;
 import controller.InizializzatorePartita;
 import model.GestoreTurni;
@@ -35,6 +36,12 @@ public class Inizializzatore {
         CardPannello cardPannello = CardPannello.getCardPannello();
         Sfondo sfondo = Sfondo.getSfondo();
         Finestra finestra = Finestra.getFinestra();
+        DistributoreCarte distributoreCarte = DistributoreCarte.getDistributoreCarte();
+        GestoreNickname gestoreNickname = GestoreNickname.getControlloreNickname();
+        PilaScartiUno pilaScartiUno = PilaScartiUno.getPilaScartiUno();
+        GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
+        ColoreInGioco coloreInGioco = ColoreInGioco.getColoreInGioco();
+        InizializzatorePartita inizializzatorePartita = InizializzatorePartita.getInizializzatorePartita();
         ///////////////////////////////////////////
 
         ///////////////////////////////
@@ -79,14 +86,13 @@ public class Inizializzatore {
 
         ///////////////////////////////////////////
         // Collegamenti Observer - Observable.
-        ColoreInGioco.getColoreInGioco().addObserver(colore);
-        PilaScartiUno.getPilaScartiUno().addObserver(pilaScarti);
-        GestoreTurni.getGestoreTurni().addObserver(verso);
-        GestoreNickname.getControlloreNickname()
-                .addObserver(InizializzatorePartita.getInizializzatorePartita());
-        GestoreNickname.getControlloreNickname()
-                .addObserver(partita);
+        coloreInGioco.addObserver(colore);
+        pilaScartiUno.addObserver(pilaScarti);
+        gestoreTurni.addObserver(verso);
+        gestoreNickname.addObserver(inizializzatorePartita);
+        gestoreNickname.addObserver(partita);
         cardLayout.addObserver(pannelloVincitore);
+        distributoreCarte.addObserver(pannelloCarteUmano);
     }
 
 }

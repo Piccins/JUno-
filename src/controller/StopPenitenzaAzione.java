@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 
 public class StopPenitenzaAzione implements ActionListener {
 
-    private final Timer timer;
+    private final TimerPenitenza timer;
 
-    public StopPenitenzaAzione(Timer timer) {
+    public StopPenitenzaAzione(TimerPenitenza timer) {
         this.timer = timer;
     }
 

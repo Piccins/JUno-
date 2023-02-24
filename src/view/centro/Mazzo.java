@@ -14,7 +14,7 @@ import java.awt.*;
  * che permette al giocatore umano (l'utente)
  * di pescare una carta.
  */
-public class Mazzo extends JPanel {
+public class Mazzo extends JPanel implements Observer {
 
     // L'istanza della classe mazzo.
     private static Mazzo mazzo;
@@ -43,7 +43,7 @@ public class Mazzo extends JPanel {
         // Impostazione bottone.
         JButton bottone = new JButton();
         ImageIcon icona = new ImageIcon("resources/carte/RETRO.png");
-        int larghezza = icona.getIconWidth() / 7;
+        int larghezza = icona.getIconWidth()  / 7;
         int lunghezza = icona.getIconHeight() / 7;
         icona.setImage(icona.getImage()
                 .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
@@ -55,6 +55,11 @@ public class Mazzo extends JPanel {
         bottone.addActionListener(new PescaAzione(Umano.getUmano(), MazzoUno.getMazzoUno()));
 
         add(bottone, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void update(Object o) {
+
     }
 
 }

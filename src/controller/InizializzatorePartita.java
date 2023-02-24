@@ -49,6 +49,9 @@ public class InizializzatorePartita implements Observer {
         // Mostra del pannello partita.
         CardLayout layoutManager = (CardLayout) CardPannello.getCardPannello().getLayout();
         layoutManager.show(CardPannello.getCardPannello(), CardPannello.PARTITA);
+
+        // Distribuzione delle carte delle carte.
+        DistributoreCarte.getDistributoreCarte().start();
     }
 
     @Override

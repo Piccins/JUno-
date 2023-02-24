@@ -27,21 +27,5 @@ public class JUno {
         List<Giocatore> giocatoreList = GestoreGiocatori.getGestoreGiocatori().getGiocatori();
 
         Finestra.getFinestra().setVisible(true);
-
-        try {
-            TimeUnit.SECONDS.sleep(5);
-            MazzoUno mazzoUno = MazzoUno.getMazzoUno();
-            GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
-            while(true) {
-                TimeUnit.MILLISECONDS.sleep(350);
-                Carta carta = mazzoUno.pesca();
-                PilaScartiUno.getPilaScartiUno().scarta(carta);
-                gestoreTurni.giocatoreAttuale().add(carta);
-                gestoreTurni.impostaGiocatoreSuccessivo();
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 }
