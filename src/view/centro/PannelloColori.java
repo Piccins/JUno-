@@ -14,7 +14,7 @@ import java.awt.*;
  * all'utente dell'applicazione d'impostare un colore nella
  * classe ColoreInGio'.
  */
-public class PannelloColori extends JPanel implements Observer {
+public class PannelloColori extends JPanel {
 
     // L'istanza della classe PannelloColori
     private static PannelloColori pannelloColori;
@@ -41,10 +41,10 @@ public class PannelloColori extends JPanel implements Observer {
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Bottoni dei colori.
-        JButton rosso = new JButton(new ImageIcon("resources/ROSSO.png"));
-        JButton blu = new JButton(new ImageIcon("resources/BLU.png"));
-        JButton giallo = new JButton(new ImageIcon("resources/GIALLO.png"));
-        JButton verde = new JButton(new ImageIcon("resources/VERDE.png"));
+        ColoreGrafico rosso = new ColoreGrafico(new ImageIcon("resources/ROSSO.png"), ColoreUno.ROSSO);
+        ColoreGrafico blu = new ColoreGrafico(new ImageIcon("resources/BLU.png"), ColoreUno.BLU);
+        ColoreGrafico giallo = new ColoreGrafico(new ImageIcon("resources/GIALLO.png"), ColoreUno.GIALLO);
+        ColoreGrafico verde = new ColoreGrafico(new ImageIcon("resources/VERDE.png"), ColoreUno.VERDE);
 
         // Impostazione della
         // trasparenza dei bottoni.
@@ -59,10 +59,11 @@ public class PannelloColori extends JPanel implements Observer {
         ridimensiona(verde);
 
         // Ascoltatori.
-        rosso.addActionListener(new ImpostaColore(ColoreUno.ROSSO));
-        blu.addActionListener(new ImpostaColore(ColoreUno.BLU));
-        giallo.addActionListener(new ImpostaColore(ColoreUno.GIALLO));
-        verde.addActionListener(new ImpostaColore(ColoreUno.VERDE));
+        ImpostaColore impostaColore = ImpostaColore.getImpostaColore();
+        rosso.addActionListener(impostaColore);
+        blu.addActionListener(impostaColore);
+        giallo.addActionListener(impostaColore);
+        verde.addActionListener(impostaColore);
 
         // Rosso
         gbc.insets = new Insets(0, 330, 0, 0);
@@ -107,14 +108,8 @@ public class PannelloColori extends JPanel implements Observer {
         gbc.weightx = 0;
         gbc.weighty = 0;
         add(verde, gbc);
-    }
 
-    @Override
-    public void update(Object o) {
-        // Questo aggiornamento permette di rendere
-        // visibile automaticamente questo pannello
-        // dei colori quando l'utente dell'applicazione
-        // scarta una carta di tipo jolly.
+        setVisible(false);
     }
 
     private void rendiTrasparente(JButton bottone) {

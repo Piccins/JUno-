@@ -12,7 +12,7 @@ public class CreatoreCartaGraficaTester {
     public static void main(String[] args) {
         CreatoreCartaGrafica creatoreCartaGrafica = CreatoreCartaGrafica.getCreatoreCartaGrafica();
 
-        Carta carta = new CartaUno(ColoreUno.NERO, null, AzioneUno.PESCAQUATTRO);
+        Carta carta = new CartaUno(ColoreUno.NERO, null, AzioneUno.PESCA_QUATTRO);
 
         JButton cartaGrafica = creatoreCartaGrafica.creaCartaGrafica(carta);
 

@@ -33,7 +33,7 @@ public class Penitenza implements ActionListener, Observable {
     private Penitenza() {
         this.observers = new ArrayList<>();
         this.timer = new Timer(350, this);
-        this.timer.setInitialDelay(0);
+        this.timer.setInitialDelay(350);
         this.carteDaPescare = 2;
     }
 

@@ -1,8 +1,16 @@
 package model.carta;
 
-public enum AzioneUno implements Azione { 
-	
-	CAMBIAGIRO, CAMBIACOLORE, PESCADUE, PESCAQUATTRO, SALTAGIRO	;
+public enum AzioneUno implements Azione {
+
+	CAMBIA_GIRO,
+
+	CAMBIA_COLORE,
+
+	PESCA_DUE,
+
+	PESCA_QUATTRO,
+
+	SALTA_GIRO;
 
 	@Override
 	public boolean isCambiaGiro() {

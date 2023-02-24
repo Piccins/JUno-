@@ -2,12 +2,16 @@ package model.giocatori;
 
 import model.carta.Carta;
 import model.FornitoreDelleCarteValide;
+import model.carta.Colore;
+import model.carta.ColoreUno;
 import utilita.Observable;
 import utilita.Observer;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Questa classe definisce i bot nel
@@ -54,6 +58,19 @@ public class Bot implements Observable, Giocatore {
         FornitoreDelleCarteValide fornitoreDelleCarteValide = FornitoreDelleCarteValide.getFornitoreDelleCarteValide();
         List<Carta> carteValide = fornitoreDelleCarteValide.getCarteValide(carte);
         return carteValide.size() == 0 ?  null : carteValide.get(0);
+    }
+
+    public Colore scegliColore() {
+        Random r = new Random();
+        ColoreUno[] colori = ColoreUno.values();
+        Colore colore;
+
+        do {
+            int index = r.nextInt(colori.length);
+            colore = colori[index];
+        } while (colore.isNero());
+
+        return colore;
     }
 
     /**

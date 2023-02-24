@@ -13,11 +13,7 @@ public class GestoreTurni implements Observer, Observable {
 
     private boolean haInvertito = false;
 
-    private boolean turnoSaltato = false;
-
-    private boolean giocatoreCambiato = false;
-
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     private int indiceGiocatoreCorrente;
 
@@ -36,12 +32,15 @@ public class GestoreTurni implements Observer, Observable {
     }
 
     public void impostaPrimoGiocatore(List<Giocatore> giocatori) {
-        GestoreGiocatori gestoreGiocatori = GestoreGiocatori.getGestoreGiocatori();
         Random r = new Random();
         this.indiceGiocatoreCorrente = r.nextInt(giocatori.size());
     }
 
-    public Giocatore giocatoreAttuale(){
+    public void saltaGiro() {
+        giocatoreSuccessivo();
+    }
+
+    public Giocatore giocatoreAttuale () {
         return GestoreGiocatori.getGestoreGiocatori()
                 .getGiocatori().get(indiceGiocatoreCorrente);
     }
@@ -51,17 +50,6 @@ public class GestoreTurni implements Observer, Observable {
      */
     public void impostaGiocatoreSuccessivo() {
         giocatoreSuccessivo();
-        this.giocatoreCambiato = true;
-        this.turnoSaltato = false;
-        this.haInvertito = false;
-        updateAll();
-    }
-
-    public void saltaTurno() {
-        giocatoreSuccessivo();
-        giocatoreSuccessivo();
-        this.turnoSaltato = true;
-        this.giocatoreCambiato = false;
         this.haInvertito = false;
         updateAll();
     }
@@ -83,8 +71,6 @@ public class GestoreTurni implements Observer, Observable {
     public void inverti() {
         this.invertito = !invertito;
         this.haInvertito = true;
-        this.turnoSaltato = false;
-        this.giocatoreCambiato = false;
         updateAll();
     }
 
@@ -95,25 +81,6 @@ public class GestoreTurni implements Observer, Observable {
      */
     public boolean isInvertito() {
         return haInvertito;
-    }
-
-    /**
-     * Restituisce true se, e soltanto se, è
-     * cambiato il turno.
-     * @return Un booleano.
-     */
-    public boolean isGiocatoreCambiato() {
-        return giocatoreCambiato;
-    }
-
-    /**
-     * Restituisce true se, e soltanto se,
-     * il giocatore successivo ha saltato il
-     * turno.
-     * @return Un booleano.
-     */
-    public boolean isTurnoSaltato() {
-        return turnoSaltato;
     }
 
     @Override

@@ -2,6 +2,7 @@ package view;
 
 import controller.DistributoreCarte;
 import controller.GestoreNickname;
+import controller.ImpostaColore;
 import controller.InizializzatorePartita;
 import model.GestoreTurni;
 import model.mazzo.ColoreInGioco;
@@ -42,6 +43,7 @@ public class Inizializzatore {
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         ColoreInGioco coloreInGioco = ColoreInGioco.getColoreInGioco();
         InizializzatorePartita inizializzatorePartita = InizializzatorePartita.getInizializzatorePartita();
+        ImpostaColore impostaColore = ImpostaColore.getImpostaColore();
         ///////////////////////////////////////////
 
         ///////////////////////////////
@@ -93,6 +95,9 @@ public class Inizializzatore {
         gestoreNickname.addObserver(partita);
         cardLayout.addObserver(pannelloVincitore);
         distributoreCarte.addObserver(pannelloCarteUmano);
+
+        // Aggiungere il cambiatore dei turni.
+        impostaColore.addObserver(null);
     }
 
 }

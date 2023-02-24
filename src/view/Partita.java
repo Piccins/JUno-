@@ -38,6 +38,9 @@ public class Partita extends JPanel implements Observer {
     // Pannello centrale della partita.
     private JPanel pannelloCenter;
 
+    // Bottone uno.
+    private JButton bottoneUno;
+
     // Istanza della classe Partita.
     private static Partita partita;
 
@@ -131,7 +134,7 @@ public class Partita extends JPanel implements Observer {
         gbc.insets = new Insets(0, 1750, 50, 0);
         panelSouth.add(botAvatar3, gbc);
         // Bottone Uno.
-        JButton bottoneUno = new JButton();
+        bottoneUno = new JButton();
         bottoneUno.setOpaque(false);
         bottoneUno.setContentAreaFilled(false);
         bottoneUno.setBorderPainted(false);
@@ -290,9 +293,18 @@ public class Partita extends JPanel implements Observer {
             gbc.weightx = 0.0;
             gbc.weighty = 0.0;
             panelSouth.add(avatar, gbc);
-        } else throw new IllegalArgumentException(
+        }
+
+        // Impostazione della visibilità del bottone
+        // uno quando il giocatore umano ha soltanto una
+        // carta nella mano.
+        else if(o instanceof TimerPenitenza timerPenitenza) {
+            bottoneUno.setVisible(timerPenitenza.isIniziato());
+        }
+
+        else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: " + o +
-                        ". Tipo atteso GestoreNickname");
+                        ". Tipo atteso GestoreNickname oppure TimerPenitenza.");
     }
 
     public JLabel getBotAvatar1() {

@@ -33,8 +33,8 @@ public class MazzoUnoFactory implements MazzoFactory<Carta>, Observable {
             // Carte jolly.
             if(colore.isNero()) {
                 for(int i = 0; i < 4; i++) {
-                    mazzo.add(new CartaUno(colore, null, AzioneUno.CAMBIACOLORE));
-                    mazzo.add(new CartaUno(colore, null, AzioneUno.PESCAQUATTRO));
+                    mazzo.add(new CartaUno(colore, null, AzioneUno.CAMBIA_COLORE));
+                    mazzo.add(new CartaUno(colore, null, AzioneUno.PESCA_QUATTRO));
                 }
             }
 

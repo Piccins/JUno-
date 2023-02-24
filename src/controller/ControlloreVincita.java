@@ -41,25 +41,46 @@ public class ControlloreVincita implements Observable {
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         Giocatore giocatore = gestoreTurni.giocatoreAttuale();
         int size = giocatore.getCarte().size();
+
+        // Caso in cui il giocatore ha
+        // zero carte in mano.
         if(size == 0)
             ((CardLayout) CardPannello.getCardPannello().getLayout())
                     .show(CardPannello.getCardPannello(), CardPannello.PANNELLO_VINCITORE);
+
+        // Caso in cui ha almeno una carta nella
+        // sua mano.
         else {
+
+            // Caso nella quale ha una carta nella
+            // sua mano.
             if(size == 1) {
+
+                // BOT.
                 if(giocatore instanceof Bot) {
                     Random r = new Random();
                     int valore = r.nextInt(2);
+
+                    // Il bot non ha detto UNO.
                     if (valore == 1) {
                         Penitenza.getPenitenza()
                                 .getTimer().start();
-                    } else {
+                    }
 
+                    else {
                         // Il bot ha detto uno.
+                        // Aggiorniamo la classe che
+                        // attiva la eventuale azione
+                        // della carta appena scartata.
                         updateAll();
                     }
-                } else {
+                }
+
+                // UMANO.
+                else {
                     TimerPenitenza.getTimerPenitenza().start();
                 }
+
             } else updateAll();
         }
     }
