@@ -10,7 +10,6 @@ import model.giocatori.Umano;
 import model.mazzo.PilaScartiUno;
 import utilita.Observer;
 import view.CartaGrafica;
-import view.Partita;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -60,7 +59,7 @@ public class PannelloCarteUmano extends JPanel implements Observer {
 
                 // Aggiunta dell'Action listener
                 // per scartare la carta nella pila.
-                cartaGrafica.addActionListener(new ScartoAzione());
+                cartaGrafica.addActionListener(ScartoAzione.getScartoAzione());
 
                 // Memorizzazione della carta inserita per
                 // la sua futura rimozione.
@@ -70,7 +69,7 @@ public class PannelloCarteUmano extends JPanel implements Observer {
                 // deve essere inizialmente disabilitata.
                 // Se la partita è iniziata l'abilitazione dipende dalla
                 // compatibilità della carta con la carta in cima alla pila e
-                // dal fatto che il giocatore di turno sia quello umano ed anche
+                // dal fatto che il giocatore di turno sia quello umano e anche
                 // dallo stato della penalità.
                 if(partitaIniziata && !inPenalita &&
                         GestoreTurni.getGestoreTurni().giocatoreAttuale() == Umano.getUmano()) {
@@ -96,14 +95,24 @@ public class PannelloCarteUmano extends JPanel implements Observer {
             revalidate();
             repaint();
 
-        } else if(o instanceof DistributoreCarte) {
-            // Le carte sono state distribuite.
-            // Possiamo abilitare il campo partitaIniziata.
-            partitaIniziata = true;
         }
 
+        // Le carte sono state distribuite.
+        // Possiamo abilitare il campo partitaIniziata.
+        else if(o instanceof DistributoreCarte)
+            partitaIniziata = true;
+
+        // Caso non valido.
         else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido. Umano atteso");
+    }
+
+    /**
+     * Imposta il valore booleano di penalità
+     * @param inPenalita un valore booleano.
+     */
+    public void setInPenalita(boolean inPenalita) {
+        this.inPenalita = inPenalita;
     }
 
 }

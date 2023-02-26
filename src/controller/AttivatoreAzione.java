@@ -79,10 +79,13 @@ public class AttivatoreAzione implements Observer, Observable {
                     return;
                 }
             }
-        } updateAll();
-    }
+        }
 
-    private void aggiungiDueCarte() {
+        // Dopo l'eventuale attivazione dell'effetto della carta
+        // si rende necessario passare il turno al giocatore successivo
+        // e successivamente aggiornare la classe ManagerPartita.
+        gestoreTurni.impostaGiocatoreSuccessivo();
+        updateAll();
     }
 
     @Override
@@ -91,7 +94,7 @@ public class AttivatoreAzione implements Observer, Observable {
             o instanceof Penitenza) {
             // Attivazione dell'azione dell'ultima
             // carta coinvolta nella pila degli scarti.
-            attiva(PilaScartiUno.getPilaScartiUno().getCarta());
+            attiva(PilaScartiUno.getPilaScartiUno().peek());
         }
 
         // Caso non valido.

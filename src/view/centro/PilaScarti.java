@@ -45,7 +45,8 @@ public class PilaScarti extends JPanel implements Observer {
     @Override
     public void update(Object o) {
         if(o instanceof PilaScartiUno pila) {
-            Carta carta = pila.getCarta();
+            // Creazione della carta grafica.
+            Carta carta = pila.peek();
             CartaGrafica cartaGrafica = CreatoreCartaGrafica
                     .getCreatoreCartaGrafica().creaCartaGrafica(carta);
 

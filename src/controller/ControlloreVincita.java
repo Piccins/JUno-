@@ -3,6 +3,7 @@ package controller;
 import model.GestoreTurni;
 import model.giocatori.Bot;
 import model.giocatori.Giocatore;
+import model.mazzo.PilaScarti;
 import utilita.Observable;
 import utilita.Observer;
 import view.CardPannello;
@@ -16,7 +17,7 @@ import java.util.Random;
  * Questa classe definisce un controllore di vincita nel
  * gioco di carte Uno.
  */
-public class ControlloreVincita implements Observable {
+public class ControlloreVincita implements Observable, Observer {
 
     private final List<Observer> observers;
 
@@ -98,6 +99,15 @@ public class ControlloreVincita implements Observable {
     @Override
     public void updateAll() {
         for(Observer o : observers) o.update(this);
+    }
+
+    @Override
+    public void update(Object o) {
+        if(o instanceof PilaScarti<?> pilaScarti) {
+            if(pilaScarti.size() > 1) controlla();
+        } else throw new IllegalArgumentException(
+                "Il tipo dell'oggetto non valido: " + o.getClass() +
+                        ". Tipo atteso PilaScarti.");
     }
 
 }

@@ -9,7 +9,6 @@ import utilita.Observer;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -54,10 +53,10 @@ public class Bot implements Observable, Giocatore {
         // In base alla carta in cima alla pila degli scarti
         // questo giocatore (bot) decide quale carta fornire
         // e, se ha almeno una carta che può giocare, ne ritorna
-        // una. Altrimenti ritorna null.
+        // una, altrimenti ritorna null.
         FornitoreDelleCarteValide fornitoreDelleCarteValide = FornitoreDelleCarteValide.getFornitoreDelleCarteValide();
         List<Carta> carteValide = fornitoreDelleCarteValide.getCarteValide(carte);
-        return carteValide.size() == 0 ?  null : carteValide.get(0);
+        return carteValide.size() == 0 ? null : carteValide.get(0);
     }
 
     public Colore scegliColore() {
@@ -91,10 +90,13 @@ public class Bot implements Observable, Giocatore {
      * @param carta Un oggetto Carta.
      */
     public void remove(Carta carta){
-        cartaAggiunta = false;
-        this.carta = carta;
-        carte.remove(carta);
-        updateAll();
+        if(carte.remove(carta)) {
+            cartaAggiunta = false;
+            this.carta = carta;
+            updateAll();
+        } else throw new IllegalArgumentException(
+                "La carta specificata non è presente" +
+                        "nella mano di questo giocatore.");
     }
 
     @Override

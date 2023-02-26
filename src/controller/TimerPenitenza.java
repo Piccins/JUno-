@@ -1,7 +1,10 @@
 package controller;
 
+import model.GestoreTurni;
+import model.giocatori.Umano;
 import utilita.Observable;
 import utilita.Observer;
+import view.giocatori.PannelloCarteUmano;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -66,6 +69,16 @@ public class TimerPenitenza implements ActionListener, Observable {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Imposta il valore di penalità a true se
+        // il turno del giocatore attuale è quello
+        // dell'utente dell'applicazione. Tale valore
+        // booleano comunica che le carte che verranno
+        // aggiunte devono essere disabilitate quando inserite.
+        PannelloCarteUmano.getPannelloCarteUmano()
+                .setInPenalita(GestoreTurni.getGestoreTurni()
+                        .giocatoreAttuale() instanceof Umano);
+
+        // Avvio della penitenza.
         Penitenza.getPenitenza().getTimer().start();
     }
 
@@ -91,14 +104,6 @@ public class TimerPenitenza implements ActionListener, Observable {
      */
     public boolean isIniziato() {
         return iniziato;
-    }
-
-    /**
-     * Restituisce il timer di questa istanza.
-     * @return Un oggetto Timer.
-     */
-    public Timer getTimer() {
-        return timer;
     }
 
 }

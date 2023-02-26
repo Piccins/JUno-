@@ -36,6 +36,8 @@ public class CreatoreCartaGrafica {
         else
             percorso.append(colore).append(azione);
 
+        percorso.append(".png");
+
         if(!(new File(percorso.toString())).exists())
             throw new RuntimeException(percorso.toString() + " non esiste.");
 

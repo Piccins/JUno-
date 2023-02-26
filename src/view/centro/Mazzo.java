@@ -1,6 +1,8 @@
 package view.centro;
 
 import controller.PescaAzione;
+import controller.ScartoAzione;
+import model.GestoreTurni;
 import model.giocatori.Umano;
 import model.mazzo.MazzoUno;
 import utilita.Observer;
@@ -15,6 +17,8 @@ import java.awt.*;
  * di pescare una carta.
  */
 public class Mazzo extends JPanel implements Observer {
+
+    private JButton bottone;
 
     // L'istanza della classe mazzo.
     private static Mazzo mazzo;
@@ -41,7 +45,7 @@ public class Mazzo extends JPanel implements Observer {
         setLayout(new BorderLayout());
 
         // Impostazione bottone.
-        JButton bottone = new JButton();
+        bottone = new JButton();
         ImageIcon icona = new ImageIcon("resources/carte/RETRO.png");
         int larghezza = icona.getIconWidth()  / 7;
         int lunghezza = icona.getIconHeight() / 7;
@@ -54,12 +58,33 @@ public class Mazzo extends JPanel implements Observer {
         bottone.setBorderPainted(false);
         bottone.addActionListener(new PescaAzione(Umano.getUmano(), MazzoUno.getMazzoUno()));
 
+        // Da de-commentare dopo la fase di test.
+        // bottone.setDisabledIcon(icona);
+
         add(bottone, BorderLayout.CENTER);
     }
 
     @Override
     public void update(Object o) {
+        // Quando il turno viene cambiato e il
+        // giocatore attuale è quello dell'umano,
+        // il mazzo viene abilitato.
+        if(o instanceof GestoreTurni gestoreTurni) {
+            if (gestoreTurni.giocatoreAttuale() instanceof Umano)
+                bottone.setEnabled(true);
+        }
 
+        // Se una carta viene scartata
+        // il mazzo dev'essere automaticamente
+        // disabilitato per prevenire la possibilità
+        // di poter pescare da esso.
+        if(o instanceof ScartoAzione)
+            bottone.setEnabled(false);
+
+        // Caso non valido.
+        else throw new IllegalArgumentException(
+                "Tipo dell'oggetto non valido: "  + o.getClass() +
+                        ". Tipo atteso GestoreTurni.");
     }
 
 }

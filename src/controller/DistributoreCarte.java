@@ -27,7 +27,7 @@ public class DistributoreCarte implements ActionListener, Observable {
 
     private DistributoreCarte() {
         observers = new ArrayList<>();
-        timer = new Timer(350, this);
+        timer = new Timer(100, this);
         timer.setInitialDelay(650);
         limite = 28;
         parametro = 0;
@@ -66,6 +66,8 @@ public class DistributoreCarte implements ActionListener, Observable {
         // distribuite.
         if(limite == 0) {
             timer.stop();
+
+            // Aggiorna il ManagerTurni.
             updateAll();
         }
     }

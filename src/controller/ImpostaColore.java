@@ -47,9 +47,13 @@ public class ImpostaColore implements ActionListener, Observable {
             coloreInGioco.setColore(colore);
             JButton button = (JButton) e.getSource();
             button.getParent().setVisible(false);
+
+            // Dopo aver impostato il colore è finalmente
+            // possibile passare il turno al giocatore
+            // successivo.
             updateAll();
         } else throw new IllegalArgumentException(
-                "La sorgente di quest evento dove essere un oggetto" +
+                "La sorgente di quest'evento dov'essere un oggetto" +
                         " di tipo ColoreGrafico.");
     }
 

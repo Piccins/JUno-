@@ -52,8 +52,9 @@ public class ColoreInGioco implements Observable, Observer {
     @Override
     public void update(Object o) {
         if(o instanceof PilaScartiUno pilaScarti) {
-            Carta carta = pilaScarti.getCarta();
-            if(!carta.getColore().isNero()) setColore(carta.getColore());
+            Carta carta = pilaScarti.peek();
+            if(!carta.getColore().isNero())
+                setColore(carta.getColore());
         } else throw new IllegalArgumentException("Tipo dell'oggetto specificato errato. " +
                 "Tipo atteso: PilaScarti.");
     }

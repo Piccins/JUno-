@@ -52,7 +52,9 @@ public class Verso extends JPanel implements Observer {
         if(o instanceof GestoreTurni gestoreTurni) {
             if(gestoreTurni.isInvertito())
                 inverti();
-        } else throw new IllegalArgumentException();
+        } else throw new IllegalArgumentException(
+                "Tipo dell'oggetto non valido: " + o.getClass() +
+                        ". Tipo atteso GestoreTurni.");
     }
 
     private void inverti() {

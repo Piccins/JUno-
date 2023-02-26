@@ -17,8 +17,20 @@ import java.awt.event.ActionListener;
  */
 public class ScartoAzione implements ActionListener {
 
+    // L'istanza ScartoAzione.
+    private static ScartoAzione scartoAzione;
+
     // Costruisce un oggetto ScartoAzione.
-    public ScartoAzione() {}
+    private ScartoAzione() {}
+
+    /**
+     * Restituisce l'istanza della classe ScartoAzione.
+     * @return Un oggetto ScartoAzione.
+     */
+    public static ScartoAzione getScartoAzione() {
+        if(scartoAzione == null) scartoAzione = new ScartoAzione();
+        return scartoAzione;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

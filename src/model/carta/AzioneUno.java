@@ -14,26 +14,26 @@ public enum AzioneUno implements Azione {
 
 	@Override
 	public boolean isCambiaGiro() {
-		return name().equals("CAMBIAGIRO");
+		return name().equals("CAMBIA_GIRO");
 	}
 	@Override
 	public boolean isCambiaColore() {
-		return name().equals("CAMBIACOLORE");
+		return name().equals("CAMBIA_COLORE");
 	}
 
 	@Override
 	public boolean isPescaDue() {
-		return name().equals("PESCADUE");
+		return name().equals("PESCA_DUE");
 	}
 
 	@Override
 	public boolean isPescaQuattro() {
-		return name().equals("PESCAQUATTRO");
+		return name().equals("PESCA_QUATTRO");
 	}
 
 	@Override
 	public boolean isSaltaGiro() {
-		return name().equals("SALTAGIRO");
+		return name().equals("SALTA_GIRO");
 	}
 
 }

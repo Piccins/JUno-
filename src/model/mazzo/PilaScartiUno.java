@@ -44,17 +44,12 @@ public class PilaScartiUno extends Stack<Carta> implements PilaScarti<Carta>, Ob
 		// Controllo validità
 		// Secondo parametro: carta in cima
 		// Primo parametro: carta da controllare.
-		this.carta = carta;
 		if(size() == 0 || ControlloreCartaValida.getControlloreCartaValida()
 				.isCompatibile(carta, peek()))
 			push(carta);
-		// else throw new IllegalArgumentException("La carta specificata non è " +
-		//"compatibile con la carta in cima a questa pila degli scarti.");
-		else push(carta);
+		else throw new IllegalArgumentException("La carta specificata non è " +
+				"compatibile con la carta in cima a questa pila degli scarti.");
 		updateAll();
 	}
 
-	public Carta getCarta() {
-		return carta;
-	}
 }

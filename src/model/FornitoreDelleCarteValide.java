@@ -1,13 +1,11 @@
 package model;
 
 import model.carta.Carta;
-import model.mazzo.PilaScarti;
+import model.mazzo.PilaScartiUno;
 
 import java.util.List;
 
 public class FornitoreDelleCarteValide {
-
-    private PilaScarti<Carta> pilaScarti;
 
     private static FornitoreDelleCarteValide fornitoreDelleCarteValide;
 
@@ -18,14 +16,11 @@ public class FornitoreDelleCarteValide {
         return fornitoreDelleCarteValide;
     }
 
-    public void setPilaScarti(PilaScarti<Carta> pilaScarti) {
-        this.pilaScarti = pilaScarti;
-    }
-
     public List<Carta> getCarteValide(List<Carta> carte) {
+        PilaScartiUno pilaScartiUno = PilaScartiUno.getPilaScartiUno();
         ControlloreCartaValida controlloreCartaValida = ControlloreCartaValida.getControlloreCartaValida();
         return carte.stream()
-                .filter(carta -> controlloreCartaValida.isCompatibile(carta, pilaScarti.get(pilaScarti.size() - 1)))
+                .filter(carta -> controlloreCartaValida.isCompatibile(carta, pilaScartiUno.get(pilaScartiUno.size() - 1)))
                 .toList();
     }
 

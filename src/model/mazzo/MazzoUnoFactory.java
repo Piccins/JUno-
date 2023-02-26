@@ -42,7 +42,7 @@ public class MazzoUnoFactory implements MazzoFactory<Carta>, Observable {
             else {
                 for(int i = 0; i <= 9; i++) {
 
-                    // Carte numeriche con valore 0.
+                    // Carte numeriche con valore zero.
                     if(i == 0) {
                         mazzo.add(new CartaUno(colore, i, null));
                     }

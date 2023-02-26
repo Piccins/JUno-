@@ -2,7 +2,6 @@ package view.centro;
 
 import controller.ImpostaColore;
 import model.carta.ColoreUno;
-import utilita.Observer;
 
 import javax.swing.*;
 import java.awt.*;
