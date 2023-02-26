@@ -29,12 +29,10 @@ public class CreatoreCartaGrafica {
 
         StringBuilder percorso = new StringBuilder("resources/carte/");
 
-        if(carta.getAzione() == null) {
+        if(carta.getAzione() == null)
             percorso.append(colore).append(valore);
-        } else {
+        else
             percorso.append(colore).append(azione);
-        }
-
 
         ImageIcon imageIcon = new ImageIcon(percorso + ".png");
 
