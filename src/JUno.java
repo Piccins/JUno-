@@ -26,6 +26,8 @@ public class JUno {
 
         List<Giocatore> giocatoreList = GestoreGiocatori.getGestoreGiocatori().getGiocatori();
 
+        System.out.println(System.getProperty("user.dir"));
+
         Finestra.getFinestra().setVisible(true);
     }
 }

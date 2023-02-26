@@ -7,6 +7,8 @@ import view.CartaGrafica;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class CreatoreCartaGrafica {
 
@@ -34,7 +36,10 @@ public class CreatoreCartaGrafica {
         else
             percorso.append(colore).append(azione);
 
-        ImageIcon imageIcon = new ImageIcon(percorso + ".png");
+        if(!(new File(percorso.toString())).exists())
+            throw new RuntimeException(percorso.toString() + " non esiste.");
+
+        ImageIcon imageIcon = new ImageIcon(percorso.toString());
 
         // Ridimensionamento dell'immagine.
         int larghezza = imageIcon.getIconWidth() / 7;
