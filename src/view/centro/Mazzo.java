@@ -18,6 +18,7 @@ import java.awt.*;
  */
 public class Mazzo extends JPanel implements Observer {
 
+    // Il bottone che permette di pescare.
     private JButton bottone;
 
     // L'istanza della classe mazzo.

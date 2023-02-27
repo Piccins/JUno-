@@ -56,7 +56,7 @@ public class Colore extends JPanel implements Observer {
             int parametro = 3;
             model.carta.Colore coloreAttuale = coloreInGioco.getColore();
             ImageIcon icona = new ImageIcon("resources/" + coloreAttuale + ".png");
-            int larghezza = icona.getIconWidth() / parametro;
+            int larghezza = icona.getIconWidth()  / parametro;
             int lunghezza = icona.getIconHeight() / parametro;
             icona.setImage(icona.getImage()
                     .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));

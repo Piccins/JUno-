@@ -2,6 +2,9 @@ package controller;
 
 import model.giocatori.GestoreGiocatori;
 import model.giocatori.Giocatore;
+import model.mazzo.MazzoUno;
+import model.mazzo.MazzoUnoFactory;
+import model.mazzo.MescolatoreUno;
 import utilita.Observable;
 import utilita.Observer;
 import view.CardPannello;
@@ -33,7 +36,11 @@ public class InizializzatorePartita implements Observer {
         List<Giocatore> giocatori = gestoreGiocatori.getGiocatori();
 
         // Inizializzazione del mazzo.
-        InizializzatoreDelMazzoUno.getInizializzatoreDelMazzoUno().actionPerformed(null);
+        MazzoUno mazzo = MazzoUno.getMazzoUno();
+        mazzo.clear();
+        MazzoUnoFactory factory = MazzoUnoFactory.getMazzoUnoFactory();
+        mazzo.addAll(factory.produciMazzo());
+        MescolatoreUno.getMescolatore().mescola(mazzo);
 
         // La gestione della prima carta dev'essere effettuata
         // dopo l'invocazione del metodo actionPerformed della

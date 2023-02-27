@@ -22,19 +22,31 @@ import java.util.List;
  */
 public class AttivatoreAzione implements Observer, Observable {
 
+    // Lista degli osservatori.
     private final List<Observer> observers;
 
+    // L'istanza della classe AttivatoreEffetti.
     private static AttivatoreAzione attivatoreEffetti;
 
     private AttivatoreAzione() {
         observers = new ArrayList<>();
     }
 
+    /**
+     * Restituisce l'istanza della classe AttivatoreEffetti.
+     * @return Un oggetto AttivatoreEffetti.
+     */
     public static AttivatoreAzione getAttivatoreEffetti() {
         if(attivatoreEffetti == null) attivatoreEffetti = new AttivatoreAzione();
         return attivatoreEffetti;
     }
 
+    /**
+     * Questo metodo permette l'attivazione dell'azione
+     * eventualmente presente della carta specificata
+     * in ingresso
+     * @param carta Un oggetto di tipo Carta.
+     */
     public void attiva(Carta carta) {
         // Fornitori dei servizi.
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();

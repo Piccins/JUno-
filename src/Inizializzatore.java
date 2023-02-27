@@ -1,10 +1,11 @@
 import controller.*;
 import model.GestoreTurni;
 import model.giocatori.GestoreGiocatori;
-import model.mazzo.ColoreInGioco;
-import model.mazzo.PilaScartiUno;
+import model.mazzo.*;
 import view.*;
 import view.centro.*;
+import view.centro.Mazzo;
+import view.centro.PilaScarti;
 import view.giocatori.PannelloCarteBot1;
 import view.giocatori.PannelloCarteBot2;
 import view.giocatori.PannelloCarteBot3;
@@ -18,11 +19,10 @@ public class Inizializzatore {
         //////////////////////
         // Istanze della view.
         AttivatoreAzione attivatoreAzione = AttivatoreAzione.getAttivatoreEffetti();
-        ControlloreVincita controlloreVincita = ControlloreVincita.getControlloreVincita();
-        ManagerPartita managerPartita = ManagerPartita.getManagerTurni();
         CardPannello cardPannello = CardPannello.getCardPannello();
         Colore colore = Colore.getColore();
         ColoreInGioco coloreInGioco = ColoreInGioco.getColoreInGioco();
+        ControlloreVincita controlloreVincita = ControlloreVincita.getControlloreVincita();
         DistributoreCarte distributoreCarte = DistributoreCarte.getDistributoreCarte();
         Finestra finestra = Finestra.getFinestra();
         GestoreGiocatori gestoreGiocatori = GestoreGiocatori.getGestoreGiocatori();
@@ -30,8 +30,11 @@ public class Inizializzatore {
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         ImpostaColore impostaColore = ImpostaColore.getImpostaColore();
         InizializzatorePartita inizializzatorePartita = InizializzatorePartita.getInizializzatorePartita();
+        ManagerPartita managerPartita = ManagerPartita.getManagerTurni();
         Mazzo mazzo = Mazzo.getMazzo();
+        MazzoUno mazzoUno = MazzoUno.getMazzoUno();
         Menu menu = Menu.getMenu();
+        MescolatoreUno mescolatoreUno = MescolatoreUno.getMescolatore();
         MyCardLayout cardLayout = new MyCardLayout();
         PannelloCarteBot1 pannelloCarteBot1 = PannelloCarteBot1.getPannelloCarteBot1();
         PannelloCarteBot2 pannelloCarteBot2 = PannelloCarteBot2.getPannelloCarteBot2();
@@ -43,6 +46,7 @@ public class Inizializzatore {
         Partita partita = Partita.getPartita();
         PilaScarti pilaScarti = PilaScarti.getPilaScarti();
         PilaScartiUno pilaScartiUno = PilaScartiUno.getPilaScartiUno();
+        RiempitoreUno riempitoreUno = RiempitoreUno.getRiempitore();
         Sfondo sfondo = Sfondo.getSfondo();
         Verso verso = Verso.getVerso();
         ///////////////////////////////////////////
@@ -54,6 +58,7 @@ public class Inizializzatore {
         cardPannello.setPannelloVincitore(pannelloVincitore);
         cardPannello.setPartita(partita);
         finestra.setSfondo(sfondo);
+        mescolatoreUno.setMazzo(mazzoUno);
         pannelloCentralePartita.setColore(colore);
         pannelloCentralePartita.setColori(pannelloColori);
         pannelloCentralePartita.setMazzo(mazzo);
@@ -64,6 +69,8 @@ public class Inizializzatore {
         partita.setPannelloNorth(pannelloCarteBot2);
         partita.setPannelloSouth(pannelloCarteUmano);
         partita.setPannelloWest(pannelloCarteBot1);
+        riempitoreUno.setMazzo(mazzoUno);
+        riempitoreUno.setPilaScarti(pilaScartiUno);
         sfondo.setPannello(cardPannello);
         ////////////////////////////////////////
 
@@ -101,9 +108,10 @@ public class Inizializzatore {
         gestoreTurni.addObserver(verso);
         pilaScartiUno.addObserver(controlloreVincita);
         pilaScartiUno.addObserver(pilaScarti);
-
-        // Aggiungere il modificatore dei turni.
-        impostaColore.addObserver(null);
+        mazzoUno.addObserver(riempitoreUno);
+        riempitoreUno.addObserver(mescolatoreUno);
+        pilaScartiUno.addObserver(coloreInGioco);
+        impostaColore.addObserver(managerPartita);
     }
 
 }

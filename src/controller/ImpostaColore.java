@@ -1,5 +1,6 @@
 package controller;
 
+import model.GestoreTurni;
 import model.carta.Colore;
 import model.mazzo.ColoreInGioco;
 import utilita.Observable;
@@ -24,14 +25,21 @@ import java.util.List;
  */
 public class ImpostaColore implements ActionListener, Observable {
 
+    // Lista degli osservatori.
     private final List<Observer> observers;
 
+    // L'istanza ImpostaColore.
     private static ImpostaColore impostaColore;
 
+    // Costruisce l'istanza ImpostaCOlore.
     private ImpostaColore() {
         observers = new ArrayList<>();
     }
 
+    /**
+     * Restituisce l'istanza della classe ImpostaColore.
+     * @return Un oggetto ImpostaColore.
+     */
     public static ImpostaColore getImpostaColore() {
         if(impostaColore == null) impostaColore = new ImpostaColore();
         return impostaColore;
@@ -50,7 +58,10 @@ public class ImpostaColore implements ActionListener, Observable {
 
             // Dopo aver impostato il colore è finalmente
             // possibile passare il turno al giocatore
-            // successivo.
+            // successivo. Quindi prima viene passato il
+            // turno e successivamente viene aggiornata la classe
+            // ManagerPartita.
+            GestoreTurni.getGestoreTurni().impostaGiocatoreSuccessivo();
             updateAll();
         } else throw new IllegalArgumentException(
                 "La sorgente di quest'evento dov'essere un oggetto" +
@@ -71,4 +82,5 @@ public class ImpostaColore implements ActionListener, Observable {
     public void updateAll() {
         for(Observer o : observers) o.update(this);
     }
+
 }
