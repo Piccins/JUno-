@@ -19,7 +19,7 @@ public class RitardoCartaScartata implements ActionListener {
 
     private RitardoCartaScartata() {
         timer = new Timer(0, this);
-        timer.setInitialDelay(1000);
+        timer.setInitialDelay(650);
         timer.setRepeats(false);
     }
 

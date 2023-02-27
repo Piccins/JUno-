@@ -19,7 +19,7 @@ import java.util.Random;
  * - invertire l'ordine dei turni.
  * - fornire aggiornamenti a delle classi interessate.
  */
-public class GestoreTurni implements Observer, Observable {
+public class GestoreTurni implements Observable {
 
     // Valore booleano per determinare se
     // l'ultima modifica ha comportato la
@@ -62,6 +62,7 @@ public class GestoreTurni implements Observer, Observable {
     public void impostaPrimoGiocatore(List<Giocatore> giocatori) {
         Random r = new Random();
         this.indiceGiocatoreCorrente = r.nextInt(giocatori.size());
+        updateAll();
     }
 
     /**
@@ -131,15 +132,6 @@ public class GestoreTurni implements Observer, Observable {
      */
     public boolean isInvertito() {
         return invertito;
-    }
-
-    @Override
-    public void update(Object o) {
-        if(o instanceof GestoreGiocatori gestoreGiocatori)
-            impostaPrimoGiocatore(gestoreGiocatori.getGiocatori());
-        else throw new IllegalArgumentException(
-                "Tipo dell'oggetto in ingresso non valido:" + o.getClass() +
-                        ". Tipo atteso GestoreGiocatori.");
     }
 
     @Override

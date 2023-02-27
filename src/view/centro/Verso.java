@@ -19,10 +19,6 @@ public class Verso extends JPanel implements Observer {
     // L'immagine del giro invertito.
     private ImageIcon giroInvertito;
 
-    // Necessario per determinare se il giro
-    // è invertito
-    private boolean invertito = false;
-
     private JLabel label;
 
     private static Verso verso;
@@ -34,6 +30,9 @@ public class Verso extends JPanel implements Observer {
         return verso;
     }
 
+    /**
+     * Inizializza questa istanza con valori di default.
+     */
     public void inizializza() {
         setOpaque(false);
         setLayout(new BorderLayout());
@@ -59,19 +58,16 @@ public class Verso extends JPanel implements Observer {
     @Override
     public void update(Object o) {
         if(o instanceof GestoreTurni gestoreTurni) {
-            if(gestoreTurni.haInvertito())
-                inverti();
+            if(gestoreTurni.haInvertito()) {
+                if (gestoreTurni.isInvertito())
+                    label.setIcon(giroInvertito);
+                else label.setIcon(giro);
+                revalidate();
+                repaint();
+            }
         } else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: " + o.getClass() +
                         ". Tipo atteso GestoreTurni.");
-    }
-
-    private void inverti() {
-        invertito = !invertito;
-        if(invertito) label.setIcon(giroInvertito);
-        else label.setIcon(giro);
-        revalidate();
-        repaint();
     }
 
 }

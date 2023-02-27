@@ -3,6 +3,8 @@ package controller;
 import model.giocatori.Umano;
 import model.mazzo.PilaScartiUno;
 import view.CartaGrafica;
+import view.centro.Mazzo;
+import view.centro.PassaTurno;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +42,11 @@ public class ScartoAzione implements ActionListener {
         // prelevato direttamente mediante l'invocazione del metodo
         // getSource della classe ActionEvent.
         CartaGrafica cartaGrafica = (CartaGrafica) e.getSource();
+
+        // Disabilitazione della visibilità del pannello per passare
+        // il turno e mazzo.
+        PassaTurno.getPassaTurno().setVisible(false);
+        Mazzo.getMazzo().setEnabled(false);
 
         // Prima di scartare la carta nell pila, la carta viene rimossa
         // dalla mano del giocatore (Umano).

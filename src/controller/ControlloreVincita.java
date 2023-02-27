@@ -7,6 +7,7 @@ import model.mazzo.PilaScarti;
 import utilita.Observable;
 import utilita.Observer;
 import view.CardPannello;
+import view.PannelloVincitore;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -45,9 +46,11 @@ public class ControlloreVincita implements Observable, Observer {
 
         // Caso in cui il giocatore ha
         // zero carte in mano.
-        if(size == 0)
+        if(size == 0) {
+            PannelloVincitore.getPannelloVincitore().impostaPannelloVincitore();
             ((CardLayout) CardPannello.getCardPannello().getLayout())
                     .show(CardPannello.getCardPannello(), CardPannello.PANNELLO_VINCITORE);
+        }
 
         // Caso in cui ha almeno una carta nella
         // sua mano.

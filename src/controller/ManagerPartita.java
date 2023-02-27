@@ -24,8 +24,8 @@ public class ManagerPartita implements Observer, Observable, ActionListener {
 
     private ManagerPartita() {
         observers = new ArrayList<>();
-        timer = new Timer(1000, this);
-        timer.setInitialDelay(1000);
+        timer = new Timer(0, this);
+        timer.setInitialDelay(1500);
         timer.setRepeats(false);
     }
 
@@ -53,6 +53,7 @@ public class ManagerPartita implements Observer, Observable, ActionListener {
     public void actionPerformed(ActionEvent e) {
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         Giocatore giocatore = gestoreTurni.giocatoreAttuale();
+        System.out.println(giocatore);
         if(giocatore instanceof Bot bot) {
             Carta carta = bot.mossa();
 
@@ -78,9 +79,12 @@ public class ManagerPartita implements Observer, Observable, ActionListener {
 
     @Override
     public void update(Object o) {
-        if(o instanceof DistributoreCarte || o instanceof AttivatoreAzione)
+        if(o instanceof DistributoreCarte ||
+                o instanceof AttivatoreAzione ||
+                o instanceof ImpostaColore) {
+            timer.stop();
             timer.start();
-        else throw new IllegalArgumentException(
+        } else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: " + o.getClass() +
                         ". Tipo atteso DistributoreCarte.");
     }

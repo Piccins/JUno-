@@ -6,10 +6,7 @@ import view.*;
 import view.centro.*;
 import view.centro.Mazzo;
 import view.centro.PilaScarti;
-import view.giocatori.PannelloCarteBot1;
-import view.giocatori.PannelloCarteBot2;
-import view.giocatori.PannelloCarteBot3;
-import view.giocatori.PannelloCarteUmano;
+import view.giocatori.*;
 
 public class Inizializzatore {
 
@@ -18,6 +15,8 @@ public class Inizializzatore {
     public static void inizializza() {
         //////////////////////
         // Istanze della view.
+        EvidenziatoreDelTurno evidenziatoreDelTurno = EvidenziatoreDelTurno.getEvidenziatoreDelTurno();
+        PassaTurno passaTurno = PassaTurno.getPassaTurno();
         AttivatoreAzione attivatoreAzione = AttivatoreAzione.getAttivatoreEffetti();
         CardPannello cardPannello = CardPannello.getCardPannello();
         Colore colore = Colore.getColore();
@@ -25,7 +24,6 @@ public class Inizializzatore {
         ControlloreVincita controlloreVincita = ControlloreVincita.getControlloreVincita();
         DistributoreCarte distributoreCarte = DistributoreCarte.getDistributoreCarte();
         Finestra finestra = Finestra.getFinestra();
-        GestoreGiocatori gestoreGiocatori = GestoreGiocatori.getGestoreGiocatori();
         GestoreNickname gestoreNickname = GestoreNickname.getControlloreNickname();
         GestoreTurni gestoreTurni = GestoreTurni.getGestoreTurni();
         ImpostaColore impostaColore = ImpostaColore.getImpostaColore();
@@ -35,7 +33,6 @@ public class Inizializzatore {
         MazzoUno mazzoUno = MazzoUno.getMazzoUno();
         Menu menu = Menu.getMenu();
         MescolatoreUno mescolatoreUno = MescolatoreUno.getMescolatore();
-        MyCardLayout cardLayout = new MyCardLayout();
         PannelloCarteBot1 pannelloCarteBot1 = PannelloCarteBot1.getPannelloCarteBot1();
         PannelloCarteBot2 pannelloCarteBot2 = PannelloCarteBot2.getPannelloCarteBot2();
         PannelloCarteBot3 pannelloCarteBot3 = PannelloCarteBot3.getPannelloCarteBot3();
@@ -48,12 +45,14 @@ public class Inizializzatore {
         PilaScartiUno pilaScartiUno = PilaScartiUno.getPilaScartiUno();
         RiempitoreUno riempitoreUno = RiempitoreUno.getRiempitore();
         Sfondo sfondo = Sfondo.getSfondo();
+        TimerPenitenza timerPenitenza = TimerPenitenza.getTimerPenitenza();
+        Penitenza penitenza = Penitenza.getPenitenza();
         Verso verso = Verso.getVerso();
+        AbilitatoreDelleCarte abilitatoreDelleCarte = AbilitatoreDelleCarte.getAbilitatoreDelleCarte();
         ///////////////////////////////////////////
 
         ///////////////////////////////
         // Impostazione della view. //
-        cardPannello.setLayoutManager(cardLayout);
         cardPannello.setMenu(menu);
         cardPannello.setPannelloVincitore(pannelloVincitore);
         cardPannello.setPartita(partita);
@@ -64,6 +63,7 @@ public class Inizializzatore {
         pannelloCentralePartita.setMazzo(mazzo);
         pannelloCentralePartita.setPilaScarti(pilaScarti);
         pannelloCentralePartita.setVerso(verso);
+        pannelloCentralePartita.setPassaTurno(passaTurno);
         partita.setPannelloCenter(pannelloCentralePartita);
         partita.setPannelloEast(pannelloCarteBot3);
         partita.setPannelloNorth(pannelloCarteBot2);
@@ -88,6 +88,7 @@ public class Inizializzatore {
         pannelloCentralePartita.inizializza();
         pannelloColori.inizializza();
         pannelloVincitore.inizializza();
+        passaTurno.inizializza();
         partita.inizializza();
         pilaScarti.inizializza();
         sfondo.inizializza();
@@ -97,21 +98,25 @@ public class Inizializzatore {
         ///////////////////////////////////////////
         // Collegamenti Observer - Observable.
         attivatoreAzione.addObserver(managerPartita);
-        cardLayout.addObserver(pannelloVincitore);
         coloreInGioco.addObserver(colore);
         controlloreVincita.addObserver(attivatoreAzione);
         distributoreCarte.addObserver(managerPartita);
         distributoreCarte.addObserver(pannelloCarteUmano);
-        gestoreGiocatori.addObserver(gestoreTurni);
         gestoreNickname.addObserver(inizializzatorePartita);
         gestoreNickname.addObserver(partita);
+        gestoreTurni.addObserver(abilitatoreDelleCarte);
+        gestoreTurni.addObserver(evidenziatoreDelTurno);
+        gestoreTurni.addObserver(mazzo);
         gestoreTurni.addObserver(verso);
+        impostaColore.addObserver(managerPartita);
+        mazzoUno.addObserver(riempitoreUno);
+        penitenza.addObserver(attivatoreAzione);
+        pilaScartiUno.addObserver(coloreInGioco);
         pilaScartiUno.addObserver(controlloreVincita);
         pilaScartiUno.addObserver(pilaScarti);
-        mazzoUno.addObserver(riempitoreUno);
         riempitoreUno.addObserver(mescolatoreUno);
-        pilaScartiUno.addObserver(coloreInGioco);
-        impostaColore.addObserver(managerPartita);
+        timerPenitenza.addObserver(attivatoreAzione);
+        timerPenitenza.addObserver(partita);
     }
 
 }

@@ -13,6 +13,16 @@ import java.awt.*;
  */
 public class Partita extends JPanel implements Observer {
 
+    public static final int LATO_PANNELLO_AVATAR = 100;
+
+    private JPanel pannelloAvatar1;
+
+    private JPanel pannelloAvatar2;
+
+    private JPanel pannelloAvatar3;
+
+    private JPanel pannelloAvatarUmano;
+
     private JLabel botAvatar1;
 
     private JLabel botAvatar2;
@@ -63,6 +73,7 @@ public class Partita extends JPanel implements Observer {
     public void inizializza() {
         setLayout(new BorderLayout());
         setOpaque(false);
+
 
         // Impostazione del JScrollPane pannello west.
         JScrollPane scrollPaneWest = new JScrollPane(pannelloWest,
@@ -128,11 +139,16 @@ public class Partita extends JPanel implements Observer {
         // sia attribuibile al giocatore di destra (east) in quanto altrimenti
         // sparirebbe (coperto dal pannello south).
         // Avatar del bot numero tre (East)
+        pannelloAvatar3 = new JPanel();
+        pannelloAvatar3.setOpaque(false);
+        pannelloAvatar3.setPreferredSize(new Dimension(LATO_PANNELLO_AVATAR, LATO_PANNELLO_AVATAR));
+        pannelloAvatar3.setBackground(Color.GREEN);
         botAvatar3 = new JLabel(new ImageIcon("resources/cavallo.png"));
         botAvatar3.setBorder(BorderFactory.createTitledBorder("cavallo"));
         botAvatar3.setPreferredSize(new Dimension(85, 85));
+        pannelloAvatar3.add(botAvatar3, BorderLayout.CENTER);
         gbc.insets = new Insets(0, 1750, 50, 0);
-        panelSouth.add(botAvatar3, gbc);
+        panelSouth.add(pannelloAvatar3, gbc);
         // Bottone Uno.
         bottoneUno = new JButton();
         bottoneUno.setOpaque(false);
@@ -144,6 +160,7 @@ public class Partita extends JPanel implements Observer {
         int lunghezza = icona.getIconHeight() / 7;
         icona.setImage(icona.getImage()
                 .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
+        bottoneUno.setVisible(false);
         bottoneUno.setIcon(icona);
         bottoneUno.addActionListener(new StopPenitenzaAzione(TimerPenitenza.getTimerPenitenza()));
         gbc.insets = new Insets(0, 950, 0, 0);
@@ -188,22 +205,32 @@ public class Partita extends JPanel implements Observer {
         panelNorth.add(scrollPanelNorth, gbc);
         // Avatar pannello north.
         // Avatar del bot numero 2 (North)
+        pannelloAvatar2 = new JPanel();
+        pannelloAvatar2.setOpaque(false);
+        pannelloAvatar2.setPreferredSize(new Dimension(LATO_PANNELLO_AVATAR, LATO_PANNELLO_AVATAR));
+        pannelloAvatar2.setBackground(Color.GREEN);
         botAvatar2 = new JLabel(new ImageIcon("resources/serpente.png"));
         botAvatar2.setBorder(BorderFactory.createTitledBorder("serpente"));
         botAvatar2.setPreferredSize(new Dimension(85, 85));
+        pannelloAvatar2.add(botAvatar2, BorderLayout.CENTER);
         gbc.insets = new Insets(0, 850, 0, 0);
-        panelNorth.add(botAvatar2, gbc);
+        panelNorth.add(pannelloAvatar2, gbc);
         ///////////////////////////////
         // Avatar pannello west.
         // Questa pannello dev'essere aggiunto al pannello north nonostante
         // sia attribuibile al giocatore di sinistra (west) in quanto altrimenti
         // sparirebbe (coperto dal pannello north).
         // Avatar del bot numero uno (West)
+        pannelloAvatar1 = new JPanel();
+        pannelloAvatar1.setOpaque(false);
+        pannelloAvatar1.setPreferredSize(new Dimension(LATO_PANNELLO_AVATAR, LATO_PANNELLO_AVATAR));
+        pannelloAvatar1.setBackground(Color.GREEN);
         botAvatar1 = new JLabel(new ImageIcon("resources/drago.png"));
         botAvatar1.setBorder(BorderFactory.createTitledBorder("drago"));
         botAvatar1.setPreferredSize(new Dimension(85, 85));
+        pannelloAvatar1.add(botAvatar1, BorderLayout.CENTER);
         gbc.insets = new Insets(50, 0, 0, 1735);
-        panelNorth.add(botAvatar1, gbc);
+        panelNorth.add(pannelloAvatar1, gbc);
         ///////////////////////////////
 
         // Pannello east. //////////////
@@ -269,6 +296,61 @@ public class Partita extends JPanel implements Observer {
         this.pannelloCenter = pannelloCenter;
     }
 
+    /**
+     * Restituisce il bot avatar 1.
+     * @return Un oggetto JLabel.
+     */
+    public JLabel getBotAvatar1() {
+        return botAvatar1;
+    }
+
+    /**
+     * Restituisce il bot avatar 2.
+     * @return Un oggetto JLabel.
+     */
+    public JLabel getBotAvatar2() {
+        return botAvatar2;
+    }
+
+    /**
+     * Restituisce il bot avatar 3.
+     * @return Un oggetto JLabel.
+     */
+    public JLabel getBotAvatar3() {
+        return botAvatar3;
+    }
+
+    /**
+     * Restituisce il bot avatar umano.
+     * @return Un oggetto JLabel.
+     */
+    public JLabel getAvatar() {
+        return avatar;
+    }
+
+    public JPanel getPannelloAvatar1() {
+        return pannelloAvatar1;
+    }
+
+    public JPanel getPannelloAvatar2() {
+        return pannelloAvatar2;
+    }
+
+    public JPanel getPannelloAvatar3() {
+        return pannelloAvatar3;
+    }
+
+    public JPanel getPannelloAvatarUmano() {
+        return pannelloAvatarUmano;
+    }
+
+    /**
+     * Restituisce il bottone uno.
+     * @return Un oggetto JButton.
+     */
+    public JButton getBottoneUno() {
+        return bottoneUno;
+    }
 
     @Override
     public void update(Object o) {
@@ -280,6 +362,10 @@ public class Partita extends JPanel implements Observer {
             String nome = menu.getNickname();
 
             // Impostazione dell'avatar dell'utente (pannello south).
+            pannelloAvatarUmano = new JPanel();
+            pannelloAvatarUmano.setOpaque(false);
+            pannelloAvatarUmano.setPreferredSize(new Dimension(LATO_PANNELLO_AVATAR, LATO_PANNELLO_AVATAR));
+            pannelloAvatarUmano.setBackground(Color.GREEN);
             avatar = new JLabel(icona);
             avatar.setPreferredSize(new Dimension(85, 85));
             avatar.setBorder(BorderFactory.createTitledBorder(nome));
@@ -292,7 +378,8 @@ public class Partita extends JPanel implements Observer {
             gbc.gridy = 0;
             gbc.weightx = 0.0;
             gbc.weighty = 0.0;
-            panelSouth.add(avatar, gbc);
+            pannelloAvatarUmano.add(avatar, BorderLayout.CENTER);
+            panelSouth.add(pannelloAvatarUmano, gbc);
         }
 
         // Impostazione della visibilità del bottone
@@ -305,22 +392,6 @@ public class Partita extends JPanel implements Observer {
         else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: " + o +
                         ". Tipo atteso GestoreNickname oppure TimerPenitenza.");
-    }
-
-    public JLabel getBotAvatar1() {
-        return botAvatar1;
-    }
-
-    public JLabel getBotAvatar2() {
-        return botAvatar2;
-    }
-
-    public JLabel getBotAvatar3() {
-        return botAvatar3;
-    }
-
-    public JLabel getAvatar() {
-        return avatar;
     }
 
 }

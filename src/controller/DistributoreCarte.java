@@ -1,5 +1,6 @@
 package controller;
 
+import model.GestoreTurni;
 import model.giocatori.GestoreGiocatori;
 import model.giocatori.Giocatore;
 import model.mazzo.MazzoUno;
@@ -84,6 +85,9 @@ public class DistributoreCarte implements ActionListener, Observable {
 
             // Aggiorna il ManagerTurni.
             updateAll();
+            GestoreTurni.getGestoreTurni()
+                    .impostaPrimoGiocatore(GestoreGiocatori
+                            .getGestoreGiocatori().getGiocatori());
         }
     }
 

@@ -3,6 +3,7 @@ package controller;
 import model.carta.Carta;
 import model.giocatori.Giocatore;
 import model.mazzo.Mazzo;
+import view.centro.PassaTurno;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -42,6 +43,10 @@ public class PescaAzione implements ActionListener {
         // Aggiunta della carta nella mano del
         // giocatore.
         giocatore.add(mazzo.pesca());
+
+        // Impostazione della visibilità del pannello
+        // che permette di scartare al valore true.
+        PassaTurno.getPassaTurno().setVisible(true);
     }
 
 }

@@ -30,6 +30,10 @@ public class PannelloCentralePartita extends JPanel {
     // Pannello dei colori.
     private JPanel colori;
 
+    // Pannello con il bottone per passare
+    // il turno al giocatore successivo.
+    private JPanel passaTurno;
+
     // L'istanza della classe PannelloCentralePartita.
     private static PannelloCentralePartita pannelloCentralePartita;
 
@@ -110,6 +114,17 @@ public class PannelloCentralePartita extends JPanel {
         gbc.weightx = 0;
         gbc.weighty = 0;
         add(colori, gbc);
+
+        // Bottone per passare il turno.
+        gbc.insets = new Insets(500, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipadx = 0;
+        gbc.ipady = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        add(passaTurno, gbc);
     }
 
     /**
@@ -155,6 +170,15 @@ public class PannelloCentralePartita extends JPanel {
      */
     public void setColori(JPanel colori) {
         this.colori = colori;
+    }
+
+    /**
+     * Imposta il pannello passa turno di questa
+     * istanza.
+     * @param passaTurno Un oggetto JPanel.
+     */
+    public void setPassaTurno(JPanel passaTurno) {
+        this.passaTurno = passaTurno;
     }
 
 }

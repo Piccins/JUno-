@@ -4,6 +4,7 @@ import model.GestoreTurni;
 import model.giocatori.Umano;
 import utilita.Observable;
 import utilita.Observer;
+import view.Partita;
 import view.giocatori.PannelloCarteUmano;
 
 import javax.swing.*;
@@ -77,6 +78,10 @@ public class TimerPenitenza implements ActionListener, Observable {
         PannelloCarteUmano.getPannelloCarteUmano()
                 .setInPenalita(GestoreTurni.getGestoreTurni()
                         .giocatoreAttuale() instanceof Umano);
+
+        // Disabilità il bottone che interrompe il timer
+        // in quanto ormai la penalità verrà eseguita.
+        Partita.getPartita().getBottoneUno().setVisible(false);
 
         // Avvio della penitenza.
         Penitenza.getPenitenza().getTimer().start();

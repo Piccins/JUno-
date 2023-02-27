@@ -18,7 +18,7 @@ public class RitardoCartaAggiunta implements ActionListener {
 
     private RitardoCartaAggiunta() {
         this.timer = new Timer(0, this);
-        this.timer.setInitialDelay(1200);
+        this.timer.setInitialDelay(750);
         this.timer.setRepeats(false);
     }
 

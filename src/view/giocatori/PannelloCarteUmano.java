@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class PannelloCarteUmano extends JPanel implements Observer {
 
-    private boolean partitaIniziata = true;
+    private boolean partitaIniziata = false;
 
     private boolean inPenalita = false;
 
@@ -73,7 +73,7 @@ public class PannelloCarteUmano extends JPanel implements Observer {
                 // dallo stato della penalità.
                 if(partitaIniziata && !inPenalita &&
                         GestoreTurni.getGestoreTurni().giocatoreAttuale() == Umano.getUmano()) {
-                    Arrays.asList(getComponents()).forEach(c -> c.setEnabled(false));
+                    disabilitaTutto();
                     cartaGrafica.setEnabled(ControlloreCartaValida.getControlloreCartaValida()
                             .isCompatibile(carta, PilaScartiUno.getPilaScartiUno().peek()));
                 }
@@ -88,7 +88,10 @@ public class PannelloCarteUmano extends JPanel implements Observer {
             }
 
             // Rimozione di una carta.
-            else remove(mappaCarteGrafiche.get(carta));
+            else {
+                disabilitaTutto();
+                remove(mappaCarteGrafiche.get(carta));
+            }
 
             // Sempre dopo aver aggiunto o rimosso dei
             // componenti dall'interfaccia grafica.
@@ -113,6 +116,10 @@ public class PannelloCarteUmano extends JPanel implements Observer {
      */
     public void setInPenalita(boolean inPenalita) {
         this.inPenalita = inPenalita;
+    }
+
+    private void disabilitaTutto() {
+        Arrays.asList(getComponents()).forEach(c -> c.setEnabled(false));
     }
 
 }

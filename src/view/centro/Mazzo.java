@@ -57,10 +57,11 @@ public class Mazzo extends JPanel implements Observer {
         bottone.setContentAreaFilled(false);
         bottone.setFocusPainted(false);
         bottone.setBorderPainted(false);
+        bottone.setEnabled(false);
         bottone.addActionListener(new PescaAzione(Umano.getUmano(), MazzoUno.getMazzoUno()));
 
         // Da de-commentare dopo la fase di test.
-        // bottone.setDisabledIcon(icona);
+        bottone.setDisabledIcon(icona);
 
         add(bottone, BorderLayout.CENTER);
     }
@@ -75,17 +76,15 @@ public class Mazzo extends JPanel implements Observer {
                 bottone.setEnabled(true);
         }
 
-        // Se una carta viene scartata
-        // il mazzo dev'essere automaticamente
-        // disabilitato per prevenire la possibilità
-        // di poter pescare da esso.
-        if(o instanceof ScartoAzione)
-            bottone.setEnabled(false);
-
         // Caso non valido.
         else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: "  + o.getClass() +
                         ". Tipo atteso GestoreTurni.");
+    }
+
+    @Override
+    public void setEnabled(boolean valore) {
+        bottone.setEnabled(false);
     }
 
 }

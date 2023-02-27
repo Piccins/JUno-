@@ -107,6 +107,10 @@ public class AttivatoreAzione implements Observer, Observable {
             // Attivazione dell'azione dell'ultima
             // carta coinvolta nella pila degli scarti.
             attiva(PilaScartiUno.getPilaScartiUno().peek());
+        } else if(o instanceof TimerPenitenza timerPenitenza) {
+            if(!timerPenitenza.isIniziato()) {
+                attiva(PilaScartiUno.getPilaScartiUno().peek());
+            }
         }
 
         // Caso non valido.
