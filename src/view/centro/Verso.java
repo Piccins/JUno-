@@ -6,12 +6,21 @@ import utilita.Observer;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Questa classe definisce il pannello contenente
+ * l'immagine che descrive il verso dei turni durante
+ * una partita al gioco di carte Uno in questa applicazione.
+ */
 public class Verso extends JPanel implements Observer {
 
+    // L'immagine del giro non invertito.
     private ImageIcon giro;
 
+    // L'immagine del giro invertito.
     private ImageIcon giroInvertito;
 
+    // Necessario per determinare se il giro
+    // è invertito
     private boolean invertito = false;
 
     private JLabel label;
@@ -50,7 +59,7 @@ public class Verso extends JPanel implements Observer {
     @Override
     public void update(Object o) {
         if(o instanceof GestoreTurni gestoreTurni) {
-            if(gestoreTurni.isInvertito())
+            if(gestoreTurni.haInvertito())
                 inverti();
         } else throw new IllegalArgumentException(
                 "Tipo dell'oggetto non valido: " + o.getClass() +

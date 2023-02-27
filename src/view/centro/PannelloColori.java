@@ -111,6 +111,10 @@ public class PannelloColori extends JPanel {
         setVisible(false);
     }
 
+    /**
+     * Rende trasparente il bottone specificato.
+     * @param bottone Un oggetto di tipo JButton.
+     */
     private void rendiTrasparente(JButton bottone) {
         bottone.setOpaque(false);
         bottone.setContentAreaFilled(false);
@@ -118,12 +122,18 @@ public class PannelloColori extends JPanel {
         bottone.setFocusPainted(false);
     }
 
+    /**
+     * Ridimensiona il bottone specificato secondo un parametro
+     * reso comune.
+     * @param bottone Un oggetto JButton.
+     */
     private void ridimensiona(JButton bottone) {
+        int parametro = 3;
         ImageIcon icona = (ImageIcon) bottone.getIcon();
-        int larghezza = icona.getIconWidth();
-        int lunghezza = icona.getIconHeight();
+        int larghezza = icona.getIconWidth()  / parametro;
+        int lunghezza = icona.getIconHeight() / parametro;
         ((ImageIcon) bottone.getIcon()).setImage(icona.getImage()
-                .getScaledInstance(larghezza / 3, lunghezza / 3, Image.SCALE_SMOOTH));
+                .getScaledInstance(larghezza, lunghezza, Image.SCALE_SMOOTH));
     }
 
 }

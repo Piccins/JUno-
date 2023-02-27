@@ -36,11 +36,19 @@ public class PannelloCentralePartita extends JPanel {
     // Costruisce l'istanza della classe PannelloCentralePartita.
     private PannelloCentralePartita() {}
 
+    /**
+     * Restituisce l'istanza deglla classe PannelloCentralePartita.
+     * @return Un oggetto PannelloCentralePartita.
+     */
     public static PannelloCentralePartita getPannelloCentralePartita() {
         if(pannelloCentralePartita == null) pannelloCentralePartita = new PannelloCentralePartita();
         return pannelloCentralePartita;
     }
 
+    /**
+     * Inizializza con valori di default
+     * questa istanza.
+     */
     public void inizializza() {
         setOpaque(false);
         setPreferredSize(new Dimension(500, 500));
